@@ -6,7 +6,7 @@ A Next.js App Router application with React, Tailwind CSS, Supabase, and a dark 
 
 - Home and alliance schedules for 404, 401, FXF, BLO, OMG, and GLX.
 - Direct navigation to Player Profile, Member Forms, KvK Battle, KvK Prep, Game Guides, Upgrade Tools, and Kingdom Timeline.
-- Open account registration, member-ID/password sign-in, email verification, password recovery, and sign-out.
+- Open account registration, member-ID/password sign-in, no-email registration, admin-assisted password recovery, and sign-out.
 - Saved profiles, battle availability, and prep forms. Profiles belong to the signed-in account; administrators can review submitted forms.
 - One searchable Gen 1–2 hero list, with the kingdom’s 4-star + level-5-skill qualification rule.
 - Searchable Governor Gear choices through Red / Legendary T6, 3 stars; charms through level 22.
@@ -62,13 +62,11 @@ Responses remain in the form owner’s Google Forms account; they are not synchr
    - `NEXT_PUBLIC_SITE_URL`: the complete website origin, without a path.
    - `RATE_LIMIT_SALT`: at least 32 random characters. Generate locally with `node -e "console.log(require('node:crypto').randomBytes(32).toString('hex'))"`.
    - `NEXT_PUBLIC_SUPPORT_URL`: optional HTTPS donation destination.
-4. Enable email/password authentication and email confirmations. Registration is open; invitations are not required. Set up production SMTP for reliable verification and password-reset emails.
-5. In Supabase Auth URL settings, set the Site URL to the website origin and allow `/auth/callback` redirect URLs for your local and production origins.
-6. Configure the confirmation email link to:
-   `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email`
-7. Configure the password recovery email link to:
-   `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery`
-8. Restart the development server after changing environment variables. Create your member account through `/account` and confirm the email.
+4. Keep the Supabase Email authentication provider enabled: the server uses it internally with a reserved, non-deliverable identifier. Members do not enter email addresses. No SMTP or email templates are required.
+5. Keep email confirmations enabled for ordinary direct Supabase signup. The website's rate-limited server creates confirmed internal accounts through the admin API; it never sends email.
+6. In Supabase Auth URL settings, set the Site URL to the website origin.
+7. Restart after environment changes. Create your member account through `/account`; registration signs the new member in immediately.
+8. Existing member IDs and passwords are preserved. Previously unconfirmed legacy accounts need owner assistance; never delete an account to recreate it.
 9. Grant your account administration access from the Supabase SQL editor:
 
 ```sql
@@ -83,9 +81,9 @@ Administrator access is stored in a protected table. Registration metadata and p
 1. Put this project in a Git repository and import it into Vercel.
 2. Select the Next.js framework preset and Node.js 24. Use `npm run build`; keep the default output directory. This application requires server routes and is not a static export.
 3. Add the same Supabase settings and server-only secrets to Vercel. Set `NEXT_PUBLIC_SITE_URL` to your final HTTPS domain. Scope preview deployments to a separate test Supabase project when testing account changes.
-4. Add the final domain to the Supabase Auth settings and update the Site URL used by email templates.
+4. Add the final domain to the Supabase Auth settings and set the Site URL.
 5. Deploy. Environment changes require a fresh deployment.
-6. On the deployed site, verify registration, confirmation, sign-in, saving/reloading all three forms, and password recovery. Use two test member accounts to verify isolation and an explicitly authorized admin account to review submissions, publish an event, and upload an image.
+6. On the deployed site, verify registration without email, sign-in, saving/reloading all three forms, and password recovery. Use two test member accounts to verify isolation and an explicitly authorized admin account to review submissions, publish an event, and upload an image.
 7. Verify desktop and phone layouts, keyboard navigation, gallery lightbox controls, and screen-reader labels before sharing the site with the kingdom.
 
 No production credentials are included in the source.
@@ -129,4 +127,9 @@ node scripts/check-preview.cjs ./preview.html
 
 It exercises the battle presets, invalid-window reset, profile removals, hero search/selection, prep slots, live calculations, guide search, and kingdom-specific timeline link. This presentation uses local-only adapters; it never submits or saves information. The actual Next.js application uses the authenticated API routes.
 
-A real browser could not access the execution workspace’s local server in this session. Desktop/mobile visual QA, actual email delivery, Auth callbacks, live Storage, and deployed end-to-end saving must still be checked after connection. No live deployment or production account test is claimed.
+A real browser could not access the execution workspace’s local server in this session. Desktop/mobile visual QA, live account registration, live Storage, and deployed end-to-end saving must still be checked after connection. No live deployment or production account test is claimed.
+
+## No-email account recovery
+Members contact leadership in-game. An authorized admin can use the password-reset section at `/admin` after verifying identity. Set a new temporary password and share it privately in-game; the member should change it at `/account/password`. Do not put passwords in chat screenshots, SQL queries, or source files. Administrator accounts are excluded from this tool and must be recovered by the Supabase project owner with the server-side Auth Admin API. Existing access tokens may remain valid until expiry after a reset.
+
+Registration internally assigns `member-PLAYER_ID@members.kingdom2312.invalid`. This is an authentication identifier, not a mailbox, and does not verify in-game ownership. Public member registration remains open; leadership handles disputed IDs. Duplicate IDs cannot overwrite existing accounts because of the database unique constraint. No database migration is needed for this change. Do not rerun migration 001 on your existing database.

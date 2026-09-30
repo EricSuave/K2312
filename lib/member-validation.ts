@@ -48,6 +48,6 @@ export type PrepFormValues=z.infer<typeof prepFormSchema>;
 
 const password=z.string().min(12,'Use at least 12 characters for your website password.').max(128);
 export const signInSchema=z.object({player_id:memberIdSchema,password:z.string().min(1).max(128)}).strict();
-export const signUpSchema=z.object({player_id:memberIdSchema,player_name:nameSchema,alliance:allianceSchema,email:z.email().max(254),password,consent:z.literal(true,{error:'Agree to the privacy notice to create an account.'})}).strict();
-export const resetPasswordSchema=z.object({email:z.email().max(254)}).strict();
+export const signUpSchema=z.object({player_id:memberIdSchema,player_name:nameSchema,alliance:allianceSchema,password,consent:z.literal(true,{error:'Agree to the privacy notice to create an account.'})}).strict();
+export const adminResetSchema=z.object({player_id:memberIdSchema,password,verified:z.literal(true,{error:'Verify this member in-game before resetting access.'})}).strict();
 export const newPasswordSchema=z.object({password}).strict();
