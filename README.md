@@ -47,7 +47,7 @@ All transfer buttons now open `/join`, an original Kingdom 2312 form. Visitors d
 
 ## Registration without an alliance
 
-Apply `supabase/migrations/002_optional_registration_alliance.sql` after migration 001, including on existing projects. This only allows a member's alliance to remain unassigned; it preserves existing records. Registration asks for member ID, player name, password, and privacy consent. Transfer applicants do not choose an alliance either. Members can still provide their alliance later in their player profile.
+Apply `supabase/migrations/002_optional_registration_alliance.sql` after migration 001, including on existing projects. This only allows a member's alliance to remain unassigned; it preserves existing records. Registration asks for member ID, player name, password, and privacy consent. Transfer applicants may choose a destination alliance or No preference. Members can still provide their alliance later in their player profile.
 
 ## Connect Supabase
 
@@ -131,3 +131,11 @@ A real browser could not access the execution workspace’s local server in this
 Members contact leadership in-game. An authorized admin can use the password-reset section at `/admin` after verifying identity. Set a new temporary password and share it privately in-game; the member should change it at `/account/password`. Do not put passwords in chat screenshots, SQL queries, or source files. Administrator accounts are excluded from this tool and must be recovered by the Supabase project owner with the server-side Auth Admin API. Existing access tokens may remain valid until expiry after a reset.
 
 Registration internally assigns `member-PLAYER_ID@members.kingdom2312.invalid`. This is an authentication identifier, not a mailbox, and does not verify in-game ownership. Public member registration remains open; leadership handles disputed IDs. Duplicate IDs cannot overwrite existing accounts because of the database unique constraint. No database migration is needed for this change. Do not rerun migration 001 on your existing database.
+
+
+## Five-step transfer applications
+Apply migration 003_transfer_application.sql before deploying the five-step form. This adds details and evidence_paths columns and a private transfer-evidence bucket. Existing applications remain readable.
+
+The form covers identity, desired transfer month/alliance and UTC schedule, Gen 2/TG3/T10 progression, event/KvK commitment, and 1–4 screenshots. It excludes total power, troop counts, Master power, T11, later Truegold levels, and Truegold Dust. Intake months express applicant preference and are not scheduled transfer windows.
+
+Screenshots accept JPEG/PNG/WebP up to 750,000 bytes each; the complete multipart request is bounded at 3.2 MB. The server checks signatures and sizes, generates paths, and stores only private files. Admin review issues signed links lasting ten minutes. Anonymous and ordinary member reads are denied by storage policies. Failed inserts trigger best-effort uploaded-file cleanup. Hosting failures can leave orphan files; the project owner can remove these from the private bucket. Never make the bucket public.

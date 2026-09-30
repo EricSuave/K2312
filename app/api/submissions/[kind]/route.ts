@@ -13,6 +13,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ kin
     const { kind } = await params;
     if (!Object.hasOwn(schemas, kind)) throw new HttpError(404, 'Form not found.');
     if (kind === 'transfers' && !kingdom.transfersOpen) throw new HttpError(503, 'Transfer applications are not open yet. Please contact leadership in the game.');
+    if(kind==='transfers')throw new HttpError(410,'Please use the five-step transfer application at /join.');
     if (kind === 'transfers' && transferSettings.formUrl) throw new HttpError(409, 'Transfer applications are collected through Google Forms. Open the Transfer page to apply.');
     const { website, consent, request_id, ...data } = schemas[kind as SubmissionKind].parse(await readJson(request));
     void website;

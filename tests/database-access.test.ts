@@ -23,6 +23,10 @@ test('migration enforces member ownership, admin roles, published content, and r
     await db.exec(await readFile(new URL('../supabase/migrations/001_kingdom_hub.sql',import.meta.url),'utf8'));
     const optionalAlliance=await readFile(new URL('../supabase/migrations/002_optional_registration_alliance.sql',import.meta.url),'utf8');
     await db.exec(optionalAlliance);await db.exec(optionalAlliance);
+    const evidenceMigration=await readFile(new URL('../supabase/migrations/003_transfer_application.sql',import.meta.url),'utf8');
+    await db.exec(evidenceMigration);await db.exec(evidenceMigration);
+    await db.exec("insert into storage.objects(bucket_id,name) values('transfer-evidence','private-report.png')");
+    assert.equal((await db.query<{public:boolean}>("select public from storage.buckets where id='transfer-evidence'")).rows[0].public,false);
     const unassigned='00000000-0000-4000-8000-000000000099';
     await db.query('insert into auth.users(id,email,raw_user_meta_data) values($1,$2,$3)',[unassigned,'member-100099@members.kingdom2312.invalid',JSON.stringify({player_id:'100099',player_name:'Unassigned',consent:true})]);
     assert.equal((await db.query<{alliance:string|null}>('select alliance from members where id=$1',[unassigned])).rows[0].alliance,null);
@@ -49,7 +53,7 @@ test('migration enforces member ownership, admin roles, published content, and r
     assert.equal((await db.query<{is_admin:boolean}>('select is_admin()')).rows[0].is_admin,true);
     assert.equal((await db.query('select * from member_forms')).rows.length,2);
     assert.equal((await db.query('select * from events')).rows.length,2);
-    assert.equal((await db.query('select * from storage.objects')).rows.length,2);
+    assert.equal((await db.query('select * from storage.objects')).rows.length,3);
     await db.exec('reset role;set role anon');
     await assert.rejects(()=>db.query('select * from members'),/permission denied/);
     await assert.rejects(()=>db.query('select * from member_forms'),/permission denied/);

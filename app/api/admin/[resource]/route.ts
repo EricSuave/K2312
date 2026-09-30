@@ -19,6 +19,15 @@ export async function GET(request:Request,{params}:{params:Promise<{resource:str
     const{data,error}=await query.range(offset,offset+100);if(error)throw error;
     let items=(data??[]).slice(0,100);
     if(resource==='forms'&&items.length){const{data:members,error:memberError}=await client.from('members').select('id,player_id,player_name,alliance').in('id',[...new Set(items.map(item=>item.user_id))]);if(memberError)throw memberError;items=items.map(item=>({...item,members:members?.find(member=>member.id===item.user_id)}));}
+    if(resource==='transfers'&&items.length){
+      items=await Promise.all(items.map(async item=>{
+        const paths=Array.isArray(item.evidence_paths)?item.evidence_paths:[];
+        if(!paths.length)return {...item,evidence_urls:[]};
+        const{data:urls,error}=await client.storage.from('transfer-evidence').createSignedUrls(paths,600);
+        if(error)throw error;
+        return {...item,evidence_urls:urls?.map(entry=>entry.signedUrl).filter(Boolean)??[]};
+      }));
+    }
     if(resource==='gallery'&&items.length){
       const{data:urls,error:storageError}=await client.storage.from('gallery').createSignedUrls(items.map(item=>item.storage_path),600);
       if(storageError)throw storageError;

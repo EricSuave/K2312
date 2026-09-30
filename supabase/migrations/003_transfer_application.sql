@@ -1,0 +1,11 @@
+begin;
+alter table public.transfer_applications add column if not exists details jsonb not null default '{}'::jsonb;
+alter table public.transfer_applications add column if not exists evidence_paths text[] not null default '{}';
+insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)
+values('transfer-evidence','transfer-evidence',false,750000,array['image/jpeg','image/png','image/webp'])
+on conflict(id) do update set public=false,file_size_limit=750000,allowed_mime_types=excluded.allowed_mime_types;
+-- Uploads use the rate-limited server route. Applicants cannot list/read files.
+drop policy if exists transfer_evidence_admin_read on storage.objects;
+create policy transfer_evidence_admin_read on storage.objects for select to authenticated
+using(bucket_id='transfer-evidence' and (select public.is_admin()));
+commit;

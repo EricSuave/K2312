@@ -11,7 +11,7 @@ const player = {
 };
 export const transferSchema = z.object({
   ...player, current_kingdom: z.number().int().min(1).max(999999),
-  preferred_alliance: z.literal('No preference').default('No preference'),
+  preferred_alliance: z.union([alliance,z.literal('No preference')]).default('No preference'),
   preferred_times: text(240), kvk_participation: text(1500), languages: text(160),
   notes: z.string().trim().max(2000).default(''),
 });
