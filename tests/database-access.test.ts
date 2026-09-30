@@ -21,6 +21,13 @@ test('migration enforces member ownership, admin roles, published content, and r
       grant select,insert,update,delete on storage.objects to anon,authenticated;
     `);
     await db.exec(await readFile(new URL('../supabase/migrations/001_kingdom_hub.sql',import.meta.url),'utf8'));
+    const optionalAlliance=await readFile(new URL('../supabase/migrations/002_optional_registration_alliance.sql',import.meta.url),'utf8');
+    await db.exec(optionalAlliance);await db.exec(optionalAlliance);
+    const unassigned='00000000-0000-4000-8000-000000000099';
+    await db.query('insert into auth.users(id,email,raw_user_meta_data) values($1,$2,$3)',[unassigned,'member-100099@members.kingdom2312.invalid',JSON.stringify({player_id:'100099',player_name:'Unassigned',consent:true})]);
+    assert.equal((await db.query<{alliance:string|null}>('select alliance from members where id=$1',[unassigned])).rows[0].alliance,null);
+    await db.query('delete from auth.users where id=$1',[unassigned]);
+
     for(const[id,player_id,player_name]of[[alice,'100001','Alice'],[bob,'100002','Bob']])await db.query('insert into auth.users(id,email,raw_user_meta_data) values($1,$2,$3)',[id,`${player_id}@example.test`,JSON.stringify({player_id,player_name,alliance:'404',consent:true})]);
     await db.query("insert into member_forms(user_id,kind,cycle,payload) values($1,'prep','2026-10-03',$2)",[bob,JSON.stringify({battle_date:'2026-10-03'})]);
     await db.exec("insert into events(title,kind,starts_at,ends_at,description,published) values('Public','KvK','2026-10-03 10:00Z','2026-10-03 22:00Z','Visible',true),('Private','KvK','2026-10-03 10:00Z','2026-10-03 22:00Z','Hidden',false)");

@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {signUpSchema,signInSchema,adminResetSchema} from '../lib/member-validation';
 
-const signup={player_id:'59360043',player_name:'Example',alliance:'404',password:'test-only-long-password',consent:true};
+const signup={player_id:'59360043',player_name:'Example',password:'test-only-long-password',consent:true};
 test('registration accepts member ID and password without an email',()=>{
   assert.equal(signUpSchema.parse(signup).player_id,'59360043');
   assert.equal(signUpSchema.safeParse({...signup,email:'someone@example.com'}).success,false);

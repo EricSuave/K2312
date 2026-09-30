@@ -15,7 +15,7 @@ A Next.js App Router application with React, Tailwind CSS, Supabase, and a dark 
 - K710-inspired four-column prep: Days 1, 2, 4, and 5. Speedups stay in days; UTC slots are requests, not automatic bookings.
 - Real inventory-based Governor Gear, charm, and construction calculations: affordable reach, costs, leftovers, target shortfalls, next-step requirements, and an upgrade path.
 - Searchable game/kingdom guides with source links. Kingdom Timeline links to the live 2312-specific Kingshot Optimizer page and shows leadership-confirmed progression.
-- Transfer buttons open the supplied Google Form in a new tab, with an accessible external-link label and Google sign-in notice. `/join` includes the form link and transfer requirements.
+- Transfer buttons open the Kingdom 2312 application at `/join`, stored in this site’s Supabase database and reviewed by kingdom admins.
 - A protected administration area for member submissions, website transfer applications, events, and gallery uploads/publication/deletion.
 - Row-level database policies, private gallery storage, server-side validation, origin checks, and shared rate limits.
 
@@ -41,15 +41,13 @@ node scripts/check-routes.cjs
 npm start
 ```
 
-## Transfer application link
+## Transfer applications
 
-The Transfer navigation item, home-page application buttons, transfer cards/banners, and alliance application buttons open:
+All transfer buttons now open `/join`, an original Kingdom 2312 form. Visitors do not need an account. Applications are validated, rate limited, stored in Supabase, and reviewed under Admin → Transfers. No answers are sent to another kingdom or Google Forms.
 
-https://docs.google.com/forms/d/e/1FAIpQLScuFJOddEfslPCGMfBoHtIcoJ-pR6M_t9sy9jMwgF7Eg97jtQ/viewform
+## Registration without an alliance
 
-Change the destination in `data/transfers.ts`. Google sign-in was required when opening this link; the form’s questions and owner were not visible without signing in. The website links to the exact supplied form and does not duplicate its questions or change its sharing settings. Linking works without Supabase configuration.
-
-Responses remain in the form owner’s Google Forms account; they are not synchronized into the website admin area. Set `transferSettings.formUrl` to `null` to restore the built-in Supabase-backed form after connecting the database. Set `kingdom.transfersOpen` to `false` in `data/kingdom.ts` to pause application links on this website; closing the Google Form itself must be done by its owner.
+Apply `supabase/migrations/002_optional_registration_alliance.sql` after migration 001, including on existing projects. This only allows a member's alliance to remain unassigned; it preserves existing records. Registration asks for member ID, player name, password, and privacy consent. Transfer applicants do not choose an alliance either. Members can still provide their alliance later in their player profile.
 
 ## Connect Supabase
 

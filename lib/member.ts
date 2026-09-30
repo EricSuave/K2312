@@ -3,7 +3,7 @@ import {sessionClient} from './supabase/server';
 import {databaseConfigured} from './config';
 import {HttpError} from './http';
 
-export type Member={id:string;player_id:string;player_name:string;alliance:string};
+export type Member={id:string;player_id:string;player_name:string;alliance:string|null};
 export async function memberSession(){
   if(!databaseConfigured())return null;
   const client=await sessionClient();

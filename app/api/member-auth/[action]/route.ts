@@ -20,11 +20,11 @@ export async function POST(request:Request,{params}:{params:Promise<{action:stri
       return NextResponse.json({success:true},{headers:{'Cache-Control':'private, no-store'}});
     }
     if(action==='signup'){
-      const{password,player_id,player_name,alliance}=signUpSchema.parse(raw);
+      const{password,player_id,player_name}=signUpSchema.parse(raw);
       // Internal identifier only: this reserved domain cannot receive mail.
       // Existing users still sign in through the members -> auth user lookup above.
       const email=`member-${player_id}@members.kingdom2312.invalid`;
-      const{error}=await service.auth.admin.createUser({email,password,email_confirm:true,user_metadata:{player_id,player_name,alliance,consent:true}});
+      const{error}=await service.auth.admin.createUser({email,password,email_confirm:true,user_metadata:{player_id,player_name,consent:true}});
       if(error)throw new HttpError(400,'Unable to create this account. Sign in if you already registered, or contact leadership if your member ID is already in use.');
       const{error:signInError}=await client.auth.signInWithPassword({email,password});
       return NextResponse.json({success:true,signed_in:!signInError,message:signInError?'Your account was created. Sign in with your member ID and password.':'Account created.'},{headers:{'Cache-Control':'private, no-store'}});
