@@ -1,0 +1,1 @@
+'use client';export default function ErrorPage({reset}:{reset:()=>void}){return <div className="wrap empty-state"><h1 className="text-5xl">We hit a delay.</h1><p>This page could not load. Please try again.</p><button className="button" onClick={reset}>Try again</button></div>}

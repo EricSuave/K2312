@@ -1,0 +1,2 @@
+import {PageHeader} from '@/components/ui';import {GuideBrowser} from '@/components/guide-browser';import {pageMetadata} from '@/lib/metadata';export const metadata=pageMetadata('Guides','Search Kingdom 2312 guides for KvK preparation, alliance events, transfers, and upgrade planning.');
+export default function Guides(){return <><PageHeader number="03" title="GAME GUIDES" intro="Equipment, Truegold, heroes, and rally basics. Researched references alongside our kingdom guides."/><div className="wrap page-body"><GuideBrowser/></div></>}

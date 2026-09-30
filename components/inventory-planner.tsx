@@ -1,0 +1,54 @@
+'use client';
+import {useState} from 'react';
+import {gearSteps,charmSteps,buildingData,gearResources,charmResources,buildingResources,disputedGearSteps,equipmentSources,checkedOn,type UpgradeStep} from '@/data/upgrade-data';
+import {planReach,constructionSteps,type ReachPlan} from '@/lib/reach-calculator';
+
+const fmt=(n:number)=>n.toLocaleString('en-US',{maximumFractionDigits:2});
+const inputNumber=(s:string)=>{if(s.trim()==='')throw new Error('Fill in all inventory and cost fields. Use 0 when you have none.');const n=Number(s);if(!Number.isFinite(n)||n<0)throw new Error('Use non-negative numbers.');return n};
+export function InventoryPlanner({kind}:{kind:'gear'|'charms'|'construction'}){
+ const isBuilding=kind==='construction';const[building,setBuilding]=useState('town-center');
+ const[current,setCurrent]=useState(isBuilding?29:0);const[target,setTarget]=useState(isBuilding?34:1);const[quantity,setQuantity]=useState('1');
+ const[owned,setOwned]=useState<string[]>(Array(isBuilding?6:kind==='gear'?3:2).fill('0'));
+ const[speed,setSpeed]=useState('0');const[discount,setDiscount]=useState('0');const[limitTime,setLimitTime]=useState(false);
+ const[overrides,setOverrides]=useState<Record<string,string[]>>({});
+ const buildingInfo=buildingData.find(b=>b.id===building)!;
+ const base=kind==='gear'?gearSteps:kind==='charms'?charmSteps:buildingInfo.steps;
+ const resources=kind==='gear'?gearResources:kind==='charms'?charmResources:buildingResources;
+ let result:ReachPlan|null=null,error='';let steps:UpgradeStep[]=base;
+ try{
+  const q=inputNumber(quantity);if(!Number.isInteger(q)||q<1||q>(kind==='gear'?6:kind==='charms'?18:1))throw new Error('Choose a valid number of identical items.');
+  const amounts=owned.map(inputNumber);if(amounts.some((n,i)=>!(isBuilding&&i===5)&&!Number.isSafeInteger(n)))throw new Error('Material quantities must be whole numbers. Speedup days may use decimals.');
+  steps=base.map(s=>({...s,cost:overrides[s.id]?.map(inputNumber)??s.cost}));
+  if(steps.some(s=>s.cost.some((v,i)=>!(isBuilding&&i===5)&&!Number.isSafeInteger(v))))throw new Error('Material costs must be whole numbers.');
+  if(isBuilding)steps=constructionSteps(steps,inputNumber(speed),inputNumber(discount));
+  result=planReach(steps,current,Math.max(current,target),amounts,q,resources.map((_,i)=>!(isBuilding&&i===5&&!limitTime)));
+ }catch(e){error=(e as Error).message}
+ function example(){setOverrides({});setQuantity('1');setCurrent(isBuilding?29:0);setTarget(isBuilding?34:kind==='gear'?4:5);setOwned(isBuilding?['660','335000000','335000000','65000000','16500000','35']:kind==='gear'?['12300','125','0']:['185','160']);setSpeed('0');setDiscount('0');setLimitTime(isBuilding);if(isBuilding)setBuilding('town-center')}
+ const disputed=kind==='gear'&&base.slice(current+1,Math.max(target,result?.reached??current)+1).some(s=>disputedGearSteps.includes(s.id));
+ return <div className="inventory-planner" data-planner={kind}>
+ <div className="planner-intro"><p>Enter your current level and available resources. Costs are loaded for you; results update as you type.</p><button className="button secondary" type="button" onClick={example}>Load example</button></div>
+ <div className="inventory-layout"><div className="inventory-inputs">
+ <section className="inventory-panel"><p className="eyebrow">01 / YOUR STARTING POINT</p><h2>What do you have?</h2><div className="form-grid">
+ {isBuilding&&<label>Building<select value={building} onChange={e=>{setBuilding(e.target.value);setCurrent(29);setTarget(34);setOverrides({})}}>{buildingData.map(b=><option key={b.id} value={b.id}>{b.label}</option>)}</select></label>}
+ <label>Current {isBuilding?'building level':kind==='gear'?'gear level':'charm level'}<select value={current} onChange={e=>{const v=Number(e.target.value);setCurrent(v);setTarget(Math.max(v,target))}}>{base.map((s,i)=><option key={s.id} value={i}>{s.label}</option>)}</select></label>
+ <label>Compare with a target<select value={Math.max(current,target)} onChange={e=>setTarget(Number(e.target.value))}>{base.map((s,i)=>i>=current&&<option key={s.id} value={i}>{s.label}</option>)}</select></label>
+ {!isBuilding&&<label>Identical {kind==='gear'?'pieces':'charms'} to upgrade<input type="number" min="1" max={kind==='gear'?6:18} step="1" value={quantity} onChange={e=>setQuantity(e.target.value)}/></label>}
+ </div><p className="field-help">{isBuilding?'Includes every Truegold substep through TG3. Plan one building at a time; prerequisite building costs are separate.':'All selected items start at the same level and upgrade together. Use a separate plan for items at different levels.'}</p></section>
+ <section className="inventory-panel"><p className="eyebrow">02 / YOUR INVENTORY</p><h2>Available to spend</h2><div className="form-grid">{resources.map((name,i)=><label key={name}>{name}<input type="number" min="0" max="1000000000000" step={isBuilding&&i===5?'0.01':'1'} value={owned[i]} disabled={isBuilding&&i===5&&!limitTime} onChange={e=>setOwned(owned.map((v,j)=>i===j?e.target.value:v))}/></label>)}</div>
+ {isBuilding&&<><label className="planner-check"><input type="checkbox" checked={limitTime} onChange={e=>setLimitTime(e.target.checked)}/>Limit the result to my speedup days</label><p className="field-help">Include allocated general speedups once. With this off, the result is limited by materials and shows the required build time.</p><div className="form-grid"><label>Construction speed bonus (%)<input type="number" min="0" max="2000" value={speed} onChange={e=>setSpeed(e.target.value)}/></label><label>Resource reduction (%)<input type="number" min="0" max="99" value={discount} onChange={e=>setDiscount(e.target.value)}/></label></div><p className="field-help">Resource reduction applies to wood, bread, stone, and iron. Build time is before alliance help and one-off timer reductions.</p></>}
+ </section>
+ <details className="inventory-panel cost-overrides"><summary>Review or edit upgrade costs</summary><p className="field-help">Base costs before construction bonuses. Change a row if your in-game screen differs.</p><div className="table-scroll"><table className="cost-table"><caption>Cost to reach each next level · per item</caption><thead><tr><th>Level</th>{resources.map(r=><th key={r}>{r}</th>)}</tr></thead><tbody>{base.slice(current+1).map(s=><tr key={s.id}><th scope="row">{s.label}{kind==='gear'&&disputedGearSteps.includes(s.id)&&<small className="cost-disputed">Sources differ</small>}</th>{s.cost.map((v,i)=><td key={i} data-label={resources[i]}><input type="number" min="0" step={isBuilding&&i===5?'any':'1'} aria-label={`${s.label}: ${resources[i]}`} value={overrides[s.id]?.[i]??String(v)} onChange={e=>setOverrides({...overrides,[s.id]:(overrides[s.id]??s.cost.map(String)).map((x,j)=>i===j?e.target.value:x)})}/></td>)}</tr>)}</tbody></table></div><button type="button" className="text-link reset-link" onClick={()=>setOverrides({})}>Restore reference costs</button></details>
+ </div><aside className="inventory-panel reach-result" aria-live="polite"><p className="eyebrow">03 / YOUR UPGRADE REACH</p>{error?<p role="alert">{error}</p>:result&&<><span className="result-label">Estimated highest affordable {isBuilding?'building level':'level'}</span><h2 className="reach-level">{steps[result.reached].label}</h2><p>{result.reached-current} upgrade {result.reached-current===1?'step':'steps'}{!isBuilding&&` for ${quantity} ${kind==='gear'?'piece(s)':'charm(s)'}`}</p>
+ {result.reached===current&&current!==steps.length-1&&<p>No next upgrade fits your inventory yet.</p>}
+ {result.reached===steps.length-1&&<p>{isBuilding?'Kingdom TG3 construction limit reached.':'Maximum published equipment level reached.'}</p>}
+ <div className="table-scroll"><table className="reach-table"><caption>Your resources at this level</caption><thead><tr><th>Resource</th><th>Used</th><th>Left</th></tr></thead><tbody>{resources.map((r,i)=><tr key={r}><th scope="row">{r}</th><td>{fmt(result.spent[i])}</td><td>{isBuilding&&i===5&&!limitTime?'Not limited':fmt(result.remaining[i])}</td></tr>)}</tbody></table></div>
+ {result.nextShortfall&&<div className="reach-next"><h3>Next: {steps[result.reached+1].label}</h3><table className="reach-table"><caption>Next upgrade requirements</caption><thead><tr><th>Resource</th><th>Cost</th><th>Missing</th></tr></thead><tbody>{resources.map((resource,i)=><tr key={resource}><th scope="row">{resource}</th><td>{fmt(steps[result.reached+1].cost[i]*Number(quantity))}</td><td>{isBuilding&&i===5&&!limitTime?'Not limited':fmt(result.nextShortfall![i])}</td></tr>)}</tbody></table></div>}
+ <div className="reach-next"><h3>Target: {steps[Math.max(current,target)].label}</h3><table className="reach-table"><caption>Total cost to your requested target</caption><thead><tr><th>Resource</th><th>Required</th><th>Missing</th></tr></thead><tbody>{resources.map((resource,i)=><tr key={resource}><th scope="row">{resource}</th><td>{fmt(result.targetCost[i])}</td><td>{isBuilding&&i===5&&!limitTime?'Not limited':fmt(result.targetShortfall[i])}</td></tr>)}</tbody></table>{result.targetShortfall.every(n=>n<1e-8)?<p>This target fits your entered budget.</p>:<><p>Missing from your current inventory:</p><ul>{result.targetShortfall.map((n,i)=>n>1e-8&&<li key={i}>{fmt(n)} {resources[i]}</li>)}</ul></>}</div>
+ {result.reached>current&&<details className="reach-next"><summary>Affordable upgrade path · {result.reached-current} steps</summary><ol className="upgrade-path">{steps.slice(current+1,result.reached+1).map(step=><li key={step.id}>{step.label}</li>)}</ol></details>}
+ {isBuilding&&<div className="reach-next"><h3>Building requirements</h3><p>This estimate excludes prerequisite upgrade costs. Check these before spending:</p><ul>{[...new Set(steps.slice(current+1,Math.max(current+1,target,result.reached)+1).map(s=>s.requirement).filter(Boolean))].map(r=><li key={r}>{r}</li>)}</ul></div>}
+ </>}
+ {disputed&&<p className="planner-caution">Your plan crosses gear costs that differ between community tables. Review the marked rows against your game screen.</p>}
+ <p className="field-help">{isBuilding?'Construction tables use rounded resource figures; reach and time are estimates.':'Full published game range. Later tiers still require the relevant kingdom unlocks.'} Plans are not connected to your account or saved.</p></aside></div>
+ <details className="planner-sources"><summary>Data sources · checked {checkedOn}</summary><p>Community references, not official game documentation. In-game costs take priority.</p><ul>{(isBuilding?[{label:`Kingshot Data · ${buildingInfo.label}`,url:buildingInfo.source}]:equipmentSources.filter(s=>kind==='gear'?!s.url.includes('charm'):s.url.includes('charm'))).map(s=><li key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.label} ↗</a></li>)}</ul></details>
+ </div>
+}

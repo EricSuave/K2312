@@ -1,0 +1,2962 @@
+[
+  {
+    "id": "town-center",
+    "label": "Town Center",
+    "source": "https://kingshotdata.com/buildings/town-center/",
+    "steps": [
+      {
+        "id": "1",
+        "label": "Level 1",
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "requirement": "-"
+      },
+      {
+        "id": "2",
+        "label": "Level 2",
+        "cost": [
+          0,
+          180,
+          0,
+          0,
+          0,
+          0.00006944444444444444
+        ],
+        "requirement": "Sawmill Lvl. 1"
+      },
+      {
+        "id": "3",
+        "label": "Level 3",
+        "cost": [
+          0,
+          805,
+          0,
+          0,
+          0,
+          0.0006944444444444445
+        ],
+        "requirement": "House 1 Lvl. 2"
+      },
+      {
+        "id": "4",
+        "label": "Level 4",
+        "cost": [
+          0,
+          1800,
+          0,
+          360,
+          0,
+          0.0020833333333333333
+        ],
+        "requirement": "Quarry Lvl. 3"
+      },
+      {
+        "id": "5",
+        "label": "Level 5",
+        "cost": [
+          0,
+          7600,
+          0,
+          1500,
+          0,
+          0.006944444444444445
+        ],
+        "requirement": "Hero Hall, House 3 Lvl. 3"
+      },
+      {
+        "id": "6",
+        "label": "Level 6",
+        "cost": [
+          0,
+          19000,
+          0,
+          3800,
+          960,
+          0.020833333333333336
+        ],
+        "requirement": "Iron Mine Lvl. 5"
+      },
+      {
+        "id": "7",
+        "label": "Level 7",
+        "cost": [
+          0,
+          69000,
+          0,
+          13000,
+          3400,
+          0.041666666666666664
+        ],
+        "requirement": "Mill Lvl. 6"
+      },
+      {
+        "id": "8",
+        "label": "Level 8",
+        "cost": [
+          0,
+          120000,
+          0,
+          25000,
+          6300,
+          0.10416666666666666
+        ],
+        "requirement": "Barracks Lvl. 7"
+      },
+      {
+        "id": "9",
+        "label": "Level 9",
+        "cost": [
+          0,
+          260000,
+          0,
+          52000,
+          13000,
+          0.1875
+        ],
+        "requirement": "Embassy Lvl. 8, Infirmary Lvl. 1"
+      },
+      {
+        "id": "10",
+        "label": "Level 10",
+        "cost": [
+          0,
+          460000,
+          0,
+          92000,
+          23000,
+          0.25
+        ],
+        "requirement": "Range Lvl. 9, Academy"
+      },
+      {
+        "id": "11",
+        "label": "Level 11",
+        "cost": [
+          0,
+          1300000,
+          1300000,
+          20000,
+          65000,
+          0.31249999999999994
+        ],
+        "requirement": "Embassy Lvl. 10, Stable Lvl. 10"
+      },
+      {
+        "id": "12",
+        "label": "Level 12",
+        "cost": [
+          0,
+          1600000,
+          1600000,
+          330000,
+          84000,
+          0.375
+        ],
+        "requirement": "Embassy Lvl. 11, Command Center Lvl. 1"
+      },
+      {
+        "id": "13",
+        "label": "Level 13",
+        "cost": [
+          0,
+          2300000,
+          2300000,
+          470000,
+          110000,
+          0.4583333333333333
+        ],
+        "requirement": "Embassy lvl. 12, Barracks lvl. 12"
+      },
+      {
+        "id": "14",
+        "label": "Level 14",
+        "cost": [
+          0,
+          3100000,
+          3100000,
+          630000,
+          150000,
+          0.5833333333333333
+        ],
+        "requirement": "Embassy Lvl. 13, Range Lvl. 13"
+      },
+      {
+        "id": "15",
+        "label": "Level 15",
+        "cost": [
+          0,
+          4600000,
+          4600000,
+          930000,
+          230000,
+          0.75
+        ],
+        "requirement": "Embassy Lvl. 14, Stable Lvl. 14"
+      },
+      {
+        "id": "16",
+        "label": "Level 16",
+        "cost": [
+          0,
+          5900000,
+          5900000,
+          1100000,
+          290000,
+          1.2694444444444444
+        ],
+        "requirement": "Embassy Lvl. 15, Academy Lvl. 15"
+      },
+      {
+        "id": "17",
+        "label": "Level 17",
+        "cost": [
+          0,
+          9300000,
+          9300000,
+          1800000,
+          480000,
+          1.523611111111111
+        ],
+        "requirement": "Embassy Lvl. 16, Barracks Lvl. 16"
+      },
+      {
+        "id": "18",
+        "label": "Level 18",
+        "cost": [
+          0,
+          12000000,
+          12000000,
+          2500000,
+          620000,
+          1.828472222222222
+        ],
+        "requirement": "Embassy Lvl. 17, Range Lvl. 17"
+      },
+      {
+        "id": "19",
+        "label": "Level 19",
+        "cost": [
+          0,
+          15000000,
+          15000000,
+          3100000,
+          780000,
+          2.7430555555555554
+        ],
+        "requirement": "Embassy Lvl. 18, Stable Lvl. 18"
+      },
+      {
+        "id": "20",
+        "label": "Level 20",
+        "cost": [
+          0,
+          21000000,
+          21000000,
+          4300000,
+          1000000,
+          3.4291666666666667
+        ],
+        "requirement": "Embassy Lvl. 19, Academy Lvl. 19"
+      },
+      {
+        "id": "21",
+        "label": "Level 21",
+        "cost": [
+          0,
+          27000000,
+          27000000,
+          5400000,
+          1300000,
+          4.457638888888889
+        ],
+        "requirement": "Embassy Lvl. 20, Barracks Lvl. 20"
+      },
+      {
+        "id": "22",
+        "label": "Level 22",
+        "cost": [
+          0,
+          36000000,
+          36000000,
+          7200000,
+          1800000,
+          6.686805555555556
+        ],
+        "requirement": "Embassy Lvl.21, Range Lvl. 21"
+      },
+      {
+        "id": "23",
+        "label": "Level 23",
+        "cost": [
+          0,
+          44000000,
+          44000000,
+          8900000,
+          2200000,
+          9.361111111111112
+        ],
+        "requirement": "Embassy Lvl. 22, Stable Lvl. 22"
+      },
+      {
+        "id": "24",
+        "label": "Level 24",
+        "cost": [
+          0,
+          60000000,
+          60000000,
+          12000000,
+          3000000,
+          13.106250000000001
+        ],
+        "requirement": "Embassy Lvl. 23, Academy Lvl. 23"
+      },
+      {
+        "id": "25",
+        "label": "Level 25",
+        "cost": [
+          0,
+          81000000,
+          81000000,
+          16000000,
+          4000000,
+          18.34861111111111
+        ],
+        "requirement": "Embassy Lvl 24, Barracks Lvl 24"
+      },
+      {
+        "id": "26",
+        "label": "Level 26",
+        "cost": [
+          0,
+          100000000,
+          100000000,
+          21000000,
+          5200000,
+          21.101388888888888
+        ],
+        "requirement": "Embassy Lvl. 25, Range Lvl. 25"
+      },
+      {
+        "id": "27",
+        "label": "Level 27",
+        "cost": [
+          0,
+          140000000,
+          140000000,
+          24000000,
+          7400000,
+          25.321527777777778
+        ],
+        "requirement": "Embassy Lvl. 26, Stable Lvl. 26"
+      },
+      {
+        "id": "28",
+        "label": "Level 28",
+        "cost": [
+          0,
+          190000000,
+          190000000,
+          39000000,
+          9900000,
+          29.119444444444444
+        ],
+        "requirement": "Embassy Lvl. 27, Academy Lvl. 27"
+      },
+      {
+        "id": "29",
+        "label": "Level 29",
+        "cost": [
+          0,
+          240000000,
+          240000000,
+          49000000,
+          12000000,
+          33.487500000000004
+        ],
+        "requirement": "Embassy Lvl. 28, Barracks Lvl. 28"
+      },
+      {
+        "id": "30",
+        "label": "Level 30",
+        "cost": [
+          0,
+          300000000,
+          300000000,
+          60000000,
+          15000000,
+          40.18541666666666
+        ],
+        "requirement": "Embassy Lvl. 29, Range Lvl. 29"
+      },
+      {
+        "id": "tg-step-1",
+        "label": "TG1 · step 1/5",
+        "cost": [
+          132,
+          67000000,
+          67000000,
+          13000000,
+          3300000,
+          7
+        ],
+        "requirement": "Embassy Lv. 30, Academy Lv. 30"
+      },
+      {
+        "id": "tg-step-2",
+        "label": "TG1 · step 2/5",
+        "cost": [
+          132,
+          67000000,
+          67000000,
+          13000000,
+          3300000,
+          7
+        ],
+        "requirement": "Embassy Lv. 30, Academy Lv. 30"
+      },
+      {
+        "id": "tg-step-3",
+        "label": "TG1 · step 3/5",
+        "cost": [
+          132,
+          67000000,
+          67000000,
+          13000000,
+          3300000,
+          7
+        ],
+        "requirement": "Embassy Lv. 30, Academy Lv. 30"
+      },
+      {
+        "id": "tg-step-4",
+        "label": "TG1 · step 4/5",
+        "cost": [
+          132,
+          67000000,
+          67000000,
+          13000000,
+          3300000,
+          7
+        ],
+        "requirement": "Embassy Lv. 30, Academy Lv. 30"
+      },
+      {
+        "id": "tg-step-5",
+        "label": "TG1",
+        "cost": [
+          132,
+          67000000,
+          67000000,
+          13000000,
+          3300000,
+          7
+        ],
+        "requirement": "Embassy Lv. 30, Academy Lv. 30"
+      },
+      {
+        "id": "tg-step-6",
+        "label": "TG2 · step 1/5",
+        "cost": [
+          158,
+          72000000,
+          72000000,
+          14000000,
+          3600000,
+          9
+        ],
+        "requirement": "Embassy TG Lv. 1, Stable TG Lv. 1"
+      },
+      {
+        "id": "tg-step-7",
+        "label": "TG2 · step 2/5",
+        "cost": [
+          158,
+          72000000,
+          72000000,
+          14000000,
+          3600000,
+          9
+        ],
+        "requirement": "Embassy TG Lv. 1, Stable TG Lv. 1"
+      },
+      {
+        "id": "tg-step-8",
+        "label": "TG2 · step 3/5",
+        "cost": [
+          158,
+          72000000,
+          72000000,
+          14000000,
+          3600000,
+          9
+        ],
+        "requirement": "Embassy TG Lv. 1, Stable TG Lv. 1"
+      },
+      {
+        "id": "tg-step-9",
+        "label": "TG2 · step 4/5",
+        "cost": [
+          158,
+          72000000,
+          72000000,
+          14000000,
+          3600000,
+          9
+        ],
+        "requirement": "Embassy TG Lv. 1, Stable TG Lv. 1"
+      },
+      {
+        "id": "tg-step-10",
+        "label": "TG2",
+        "cost": [
+          158,
+          72000000,
+          72000000,
+          14000000,
+          3600000,
+          9
+        ],
+        "requirement": "Embassy TG Lv. 1, Stable TG Lv. 1"
+      },
+      {
+        "id": "tg-step-11",
+        "label": "TG3 · step 1/5",
+        "cost": [
+          238,
+          79000000,
+          79000000,
+          15000000,
+          3900000,
+          11
+        ],
+        "requirement": "Embassy TG Lv. 2 Barracks TG Lv. 2"
+      },
+      {
+        "id": "tg-step-12",
+        "label": "TG3 · step 2/5",
+        "cost": [
+          238,
+          79000000,
+          79000000,
+          15000000,
+          3900000,
+          11
+        ],
+        "requirement": "Embassy TG Lv. 2 Barracks TG Lv. 2"
+      },
+      {
+        "id": "tg-step-13",
+        "label": "TG3 · step 3/5",
+        "cost": [
+          238,
+          79000000,
+          79000000,
+          15000000,
+          3900000,
+          11
+        ],
+        "requirement": "Embassy TG Lv. 2 Barracks TG Lv. 2"
+      },
+      {
+        "id": "tg-step-14",
+        "label": "TG3 · step 4/5",
+        "cost": [
+          238,
+          79000000,
+          79000000,
+          15000000,
+          3900000,
+          11
+        ],
+        "requirement": "Embassy TG Lv. 2 Barracks TG Lv. 2"
+      },
+      {
+        "id": "tg-step-15",
+        "label": "TG3",
+        "cost": [
+          238,
+          79000000,
+          79000000,
+          15000000,
+          3900000,
+          11
+        ],
+        "requirement": "Embassy TG Lv. 2 Barracks TG Lv. 2"
+      }
+    ]
+  },
+  {
+    "id": "embassy",
+    "label": "Embassy",
+    "source": "https://kingshotdata.com/buildings/embassy/",
+    "steps": [
+      {
+        "id": "1",
+        "label": "Level 1",
+        "cost": [
+          0,
+          60,
+          0,
+          0,
+          0,
+          0.000023148148148148147
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "2",
+        "label": "Level 2",
+        "cost": [
+          0,
+          90,
+          0,
+          0,
+          0,
+          0.00011574074074074073
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "3",
+        "label": "Level 3",
+        "cost": [
+          0,
+          400,
+          0,
+          0,
+          0,
+          0.0006944444444444445
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "4",
+        "label": "Level 4",
+        "cost": [
+          0,
+          900,
+          0,
+          180,
+          0,
+          0.001388888888888889
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "5",
+        "label": "Level 5",
+        "cost": [
+          0,
+          3800,
+          0,
+          760,
+          0,
+          0.004629629629629629
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "6",
+        "label": "Level 6",
+        "cost": [
+          0,
+          9600,
+          0,
+          1900,
+          480,
+          0.00925925925925926
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "7",
+        "label": "Level 7",
+        "cost": [
+          0,
+          34000,
+          0,
+          6900,
+          1700,
+          0.017361111111111112
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "8",
+        "label": "Level 8",
+        "cost": [
+          0,
+          63000,
+          0,
+          12000,
+          3100,
+          0.03125
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "9",
+        "label": "Level 9",
+        "cost": [
+          0,
+          130000,
+          0,
+          26000,
+          6500,
+          0.08333333333333333
+        ],
+        "requirement": "Town Center level 9"
+      },
+      {
+        "id": "10",
+        "label": "Level 10",
+        "cost": [
+          0,
+          230000,
+          0,
+          46000,
+          11000,
+          0.16493055555555555
+        ],
+        "requirement": "Town Center level 10"
+      },
+      {
+        "id": "11",
+        "label": "Level 11",
+        "cost": [
+          0,
+          260000,
+          260000,
+          52000,
+          13000,
+          0.20625
+        ],
+        "requirement": "Town Center level 11"
+      },
+      {
+        "id": "12",
+        "label": "Level 12",
+        "cost": [
+          0,
+          330000,
+          330000,
+          67000,
+          16000,
+          0.2472222222222222
+        ],
+        "requirement": "Town Center level 12"
+      },
+      {
+        "id": "13",
+        "label": "Level 13",
+        "cost": [
+          0,
+          470000,
+          470000,
+          95000,
+          23000,
+          0.30243055555555554
+        ],
+        "requirement": "Town Center level 13"
+      },
+      {
+        "id": "14",
+        "label": "Level 14",
+        "cost": [
+          0,
+          630000,
+          630000,
+          120000,
+          31000,
+          0.38472222222222224
+        ],
+        "requirement": "Town Center level 14"
+      },
+      {
+        "id": "15",
+        "label": "Level 15",
+        "cost": [
+          0,
+          930000,
+          930000,
+          180000,
+          46000,
+          0.49479166666666663
+        ],
+        "requirement": "Town Center level 15"
+      },
+      {
+        "id": "16",
+        "label": "Level 16",
+        "cost": [
+          0,
+          1100000,
+          1100000,
+          230000,
+          59000,
+          0.8217592592592592
+        ],
+        "requirement": "Town Center level 16"
+      },
+      {
+        "id": "17",
+        "label": "Level 17",
+        "cost": [
+          0,
+          1800000,
+          1800000,
+          370000,
+          93000,
+          1.0055555555555555
+        ],
+        "requirement": "Town Center level 17"
+      },
+      {
+        "id": "18",
+        "label": "Level 18",
+        "cost": [
+          0,
+          2500000,
+          2500000,
+          500000,
+          120000,
+          1.2069444444444446
+        ],
+        "requirement": "Town Center level 18"
+      },
+      {
+        "id": "19",
+        "label": "Level 19",
+        "cost": [
+          0,
+          3100000,
+          3100000,
+          620000,
+          150000,
+          1.8104166666666666
+        ],
+        "requirement": "Town Center level 19"
+      },
+      {
+        "id": "20",
+        "label": "Level 20",
+        "cost": [
+          0,
+          4300000,
+          4300000,
+          860000,
+          210000,
+          2.2631944444444443
+        ],
+        "requirement": "Town Center level 20"
+      },
+      {
+        "id": "21",
+        "label": "Level 21",
+        "cost": [
+          0,
+          5400000,
+          5400000,
+          1000000,
+          270000,
+          2.9416666666666664
+        ],
+        "requirement": "Town Center level 21"
+      },
+      {
+        "id": "22",
+        "label": "Level 22",
+        "cost": [
+          0,
+          7200000,
+          7200000,
+          1400000,
+          360000,
+          4.413194444444445
+        ],
+        "requirement": "Town Center level 22"
+      },
+      {
+        "id": "23",
+        "label": "Level 23",
+        "cost": [
+          0,
+          8900000,
+          8900000,
+          1700000,
+          440000,
+          6.178472222222222
+        ],
+        "requirement": "Town Center level 23"
+      },
+      {
+        "id": "24",
+        "label": "Level 24",
+        "cost": [
+          0,
+          12000000,
+          12000000,
+          2400000,
+          600000,
+          8.65
+        ],
+        "requirement": "Town Center level 24"
+      },
+      {
+        "id": "25",
+        "label": "Level 25",
+        "cost": [
+          0,
+          16000000,
+          16000000,
+          3200000,
+          810000,
+          12.109722222222222
+        ],
+        "requirement": "Town Center level 25"
+      },
+      {
+        "id": "26",
+        "label": "Level 26",
+        "cost": [
+          0,
+          21000000,
+          21000000,
+          4200000,
+          1000000,
+          13.926388888888889
+        ],
+        "requirement": "Town Center level 26"
+      },
+      {
+        "id": "27",
+        "label": "Level 27",
+        "cost": [
+          0,
+          29000000,
+          29000000,
+          5900000,
+          1400000,
+          16.711805555555554
+        ],
+        "requirement": "Town Center level 27"
+      },
+      {
+        "id": "28",
+        "label": "Level 28",
+        "cost": [
+          0,
+          39000000,
+          39000000,
+          7900000,
+          1900000,
+          19.21875
+        ],
+        "requirement": "Town Center level 28"
+      },
+      {
+        "id": "29",
+        "label": "Level 29",
+        "cost": [
+          0,
+          49000000,
+          49000000,
+          9800000,
+          2400000,
+          22.101388888888888
+        ],
+        "requirement": "Town Center level 29"
+      },
+      {
+        "id": "30",
+        "label": "Level 30",
+        "cost": [
+          0,
+          60000000,
+          60000000,
+          12000000,
+          3000000,
+          26.522222222222222
+        ],
+        "requirement": "Town Center level 30"
+      },
+      {
+        "id": "tg-step-1",
+        "label": "TG1 · step 1/5",
+        "cost": [
+          33,
+          13000000,
+          13000000,
+          2700000,
+          670000,
+          4.6194444444444445
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-2",
+        "label": "TG1 · step 2/5",
+        "cost": [
+          33,
+          13000000,
+          13000000,
+          2700000,
+          670000,
+          4.6194444444444445
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-3",
+        "label": "TG1 · step 3/5",
+        "cost": [
+          33,
+          13000000,
+          13000000,
+          2700000,
+          670000,
+          4.6194444444444445
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-4",
+        "label": "TG1 · step 4/5",
+        "cost": [
+          33,
+          13000000,
+          13000000,
+          2700000,
+          670000,
+          4.6194444444444445
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-5",
+        "label": "TG1",
+        "cost": [
+          33,
+          13000000,
+          13000000,
+          2700000,
+          670000,
+          4.6194444444444445
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-6",
+        "label": "TG2 · step 1/5",
+        "cost": [
+          39,
+          14000000,
+          14000000,
+          2900000,
+          720000,
+          5.939583333333333
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-7",
+        "label": "TG2 · step 2/5",
+        "cost": [
+          39,
+          14000000,
+          14000000,
+          2900000,
+          720000,
+          5.939583333333333
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-8",
+        "label": "TG2 · step 3/5",
+        "cost": [
+          39,
+          14000000,
+          14000000,
+          2900000,
+          720000,
+          5.939583333333333
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-9",
+        "label": "TG2 · step 4/5",
+        "cost": [
+          39,
+          14000000,
+          14000000,
+          2900000,
+          720000,
+          5.939583333333333
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-10",
+        "label": "TG2",
+        "cost": [
+          39,
+          14000000,
+          14000000,
+          2900000,
+          720000,
+          5.939583333333333
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-11",
+        "label": "TG3 · step 1/5",
+        "cost": [
+          59,
+          15000000,
+          15000000,
+          3100000,
+          790000,
+          7.259722222222222
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-12",
+        "label": "TG3 · step 2/5",
+        "cost": [
+          59,
+          15000000,
+          15000000,
+          3100000,
+          790000,
+          7.259722222222222
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-13",
+        "label": "TG3 · step 3/5",
+        "cost": [
+          59,
+          15000000,
+          15000000,
+          3100000,
+          790000,
+          7.259722222222222
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-14",
+        "label": "TG3 · step 4/5",
+        "cost": [
+          59,
+          15000000,
+          15000000,
+          3100000,
+          790000,
+          7.259722222222222
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-15",
+        "label": "TG3",
+        "cost": [
+          59,
+          15000000,
+          15000000,
+          3100000,
+          790000,
+          7.259722222222222
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      }
+    ]
+  },
+  {
+    "id": "barracks",
+    "label": "Barracks",
+    "source": "https://kingshotdata.com/buildings/barracks/",
+    "steps": [
+      {
+        "id": "1",
+        "label": "Level 1",
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.000023148148148148147
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "2",
+        "label": "Level 2",
+        "cost": [
+          0,
+          140,
+          0,
+          0,
+          0,
+          0.00010416666666666666
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "3",
+        "label": "Level 3",
+        "cost": [
+          0,
+          645,
+          0,
+          0,
+          0,
+          0.0005208333333333333
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "4",
+        "label": "Level 4",
+        "cost": [
+          0,
+          1400,
+          0,
+          285,
+          0,
+          0.0014467592592592594
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "5",
+        "label": "Level 5",
+        "cost": [
+          0,
+          6000,
+          0,
+          1200,
+          0,
+          0.003125
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "6",
+        "label": "Level 6",
+        "cost": [
+          0,
+          15000,
+          0,
+          3000,
+          765,
+          0.00625
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "7",
+        "label": "Level 7",
+        "cost": [
+          0,
+          55000,
+          0,
+          11000,
+          2700,
+          0.0125
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "8",
+        "label": "Level 8",
+        "cost": [
+          0,
+          100000,
+          0,
+          20000,
+          5000,
+          0.01875
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "9",
+        "label": "Level 9",
+        "cost": [
+          0,
+          200000,
+          0,
+          41000,
+          10000,
+          0.028125
+        ],
+        "requirement": "Town Center level 9"
+      },
+      {
+        "id": "10",
+        "label": "Level 10",
+        "cost": [
+          0,
+          360000,
+          0,
+          73000,
+          18000,
+          0.0375
+        ],
+        "requirement": "Town Center level 10"
+      },
+      {
+        "id": "11",
+        "label": "Level 11",
+        "cost": [
+          0,
+          460000,
+          460000,
+          92000,
+          23000,
+          0.046875
+        ],
+        "requirement": "Town Center level 11"
+      },
+      {
+        "id": "12",
+        "label": "Level 12",
+        "cost": [
+          0,
+          580000,
+          580000,
+          110000,
+          29000,
+          0.056249999999999994
+        ],
+        "requirement": "Town Center level 12"
+      },
+      {
+        "id": "13",
+        "label": "Level 13",
+        "cost": [
+          0,
+          830000,
+          830000,
+          160000,
+          41000,
+          0.06875
+        ],
+        "requirement": "Town Center level 13"
+      },
+      {
+        "id": "14",
+        "label": "Level 14",
+        "cost": [
+          0,
+          1100000,
+          1100000,
+          220000,
+          55000,
+          0.0875
+        ],
+        "requirement": "Town Center level 14"
+      },
+      {
+        "id": "15",
+        "label": "Level 15",
+        "cost": [
+          0,
+          1600000,
+          1600000,
+          320000,
+          81000,
+          0.11249999999999999
+        ],
+        "requirement": "Town Center level 15"
+      },
+      {
+        "id": "16",
+        "label": "Level 16",
+        "cost": [
+          0,
+          2000000,
+          2000000,
+          410000,
+          100000,
+          0.19027777777777777
+        ],
+        "requirement": "Town Center level 16"
+      },
+      {
+        "id": "17",
+        "label": "Level 17",
+        "cost": [
+          0,
+          3200000,
+          3200000,
+          650000,
+          160000,
+          0.22847222222222222
+        ],
+        "requirement": "Town Center level 17"
+      },
+      {
+        "id": "18",
+        "label": "Level 18",
+        "cost": [
+          0,
+          4300000,
+          4300000,
+          870000,
+          210000,
+          0.2743055555555556
+        ],
+        "requirement": "Town Center level 18"
+      },
+      {
+        "id": "19",
+        "label": "Level 19",
+        "cost": [
+          0,
+          5400000,
+          5400000,
+          1000000,
+          270000,
+          0.4111111111111111
+        ],
+        "requirement": "Town Center level 19"
+      },
+      {
+        "id": "20",
+        "label": "Level 20",
+        "cost": [
+          0,
+          7500000,
+          7500000,
+          1500000,
+          370000,
+          0.5142361111111111
+        ],
+        "requirement": "Town Center level 20"
+      },
+      {
+        "id": "21",
+        "label": "Level 21",
+        "cost": [
+          0,
+          9500000,
+          9500000,
+          1900000,
+          470000,
+          0.6684027777777778
+        ],
+        "requirement": "Town Center level 21"
+      },
+      {
+        "id": "22",
+        "label": "Level 22",
+        "cost": [
+          0,
+          12000000,
+          12000000,
+          2500000,
+          630000,
+          1.0027777777777778
+        ],
+        "requirement": "Town Center level 22"
+      },
+      {
+        "id": "23",
+        "label": "Level 23",
+        "cost": [
+          0,
+          15000000,
+          15000000,
+          3100000,
+          780000,
+          1.4041666666666666
+        ],
+        "requirement": "Town Center level 23"
+      },
+      {
+        "id": "24",
+        "label": "Level 24",
+        "cost": [
+          0,
+          21000000,
+          21000000,
+          4200000,
+          1000000,
+          1.9659722222222222
+        ],
+        "requirement": "Town Center level 24"
+      },
+      {
+        "id": "25",
+        "label": "Level 25",
+        "cost": [
+          0,
+          28000000,
+          28000000,
+          5700000,
+          1400000,
+          2.752083333333333
+        ],
+        "requirement": "Town Center level 25"
+      },
+      {
+        "id": "26",
+        "label": "Level 26",
+        "cost": [
+          0,
+          36000000,
+          36000000,
+          7300000,
+          1800000,
+          3.1645833333333333
+        ],
+        "requirement": "Town Center level 26"
+      },
+      {
+        "id": "27",
+        "label": "Level 27",
+        "cost": [
+          0,
+          52000000,
+          52000000,
+          10000000,
+          2600000,
+          3.7979166666666666
+        ],
+        "requirement": "Town Center level 27"
+      },
+      {
+        "id": "28",
+        "label": "Level 28",
+        "cost": [
+          0,
+          69000000,
+          69000000,
+          13000000,
+          3400000,
+          4.367361111111111
+        ],
+        "requirement": "Town Center level 28"
+      },
+      {
+        "id": "29",
+        "label": "Level 29",
+        "cost": [
+          0,
+          86000000,
+          86000000,
+          17000000,
+          4300000,
+          5.022916666666666
+        ],
+        "requirement": "Town Center level 29"
+      },
+      {
+        "id": "30",
+        "label": "Level 30",
+        "cost": [
+          0,
+          100000000,
+          100000000,
+          21000000,
+          5800000,
+          6.027777777777778
+        ],
+        "requirement": "Town Center level 30"
+      },
+      {
+        "id": "tg-step-1",
+        "label": "TG1 · step 1/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-2",
+        "label": "TG1 · step 2/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-3",
+        "label": "TG1 · step 3/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-4",
+        "label": "TG1 · step 4/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-5",
+        "label": "TG1",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-6",
+        "label": "TG2 · step 1/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-7",
+        "label": "TG2 · step 2/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-8",
+        "label": "TG2 · step 3/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-9",
+        "label": "TG2 · step 4/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-10",
+        "label": "TG2",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-11",
+        "label": "TG3 · step 1/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-12",
+        "label": "TG3 · step 2/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-13",
+        "label": "TG3 · step 3/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-14",
+        "label": "TG3 · step 4/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-15",
+        "label": "TG3",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      }
+    ]
+  },
+  {
+    "id": "stable",
+    "label": "Stable",
+    "source": "https://kingshotdata.com/buildings/stable/",
+    "steps": [
+      {
+        "id": "1",
+        "label": "Level 1",
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.000023148148148148147
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "2",
+        "label": "Level 2",
+        "cost": [
+          0,
+          140,
+          0,
+          0,
+          0,
+          0.00010416666666666666
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "3",
+        "label": "Level 3",
+        "cost": [
+          0,
+          645,
+          0,
+          0,
+          0,
+          0.0005208333333333333
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "4",
+        "label": "Level 4",
+        "cost": [
+          0,
+          1400,
+          0,
+          285,
+          0,
+          0.0014467592592592594
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "5",
+        "label": "Level 5",
+        "cost": [
+          0,
+          6000,
+          0,
+          1200,
+          0,
+          0.003125
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "6",
+        "label": "Level 6",
+        "cost": [
+          0,
+          15000,
+          0,
+          3000,
+          765,
+          0.00625
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "7",
+        "label": "Level 7",
+        "cost": [
+          0,
+          55000,
+          0,
+          11000,
+          2700,
+          0.0125
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "8",
+        "label": "Level 8",
+        "cost": [
+          0,
+          100000,
+          0,
+          20000,
+          5000,
+          0.01875
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "9",
+        "label": "Level 9",
+        "cost": [
+          0,
+          200000,
+          0,
+          41000,
+          10000,
+          0.028125
+        ],
+        "requirement": "Town Center level 9"
+      },
+      {
+        "id": "10",
+        "label": "Level 10",
+        "cost": [
+          0,
+          360000,
+          0,
+          73000,
+          18000,
+          0.0375
+        ],
+        "requirement": "Town Center level 10"
+      },
+      {
+        "id": "11",
+        "label": "Level 11",
+        "cost": [
+          0,
+          460000,
+          460000,
+          92000,
+          23000,
+          0.046875
+        ],
+        "requirement": "Town Center level 11"
+      },
+      {
+        "id": "12",
+        "label": "Level 12",
+        "cost": [
+          0,
+          580000,
+          580000,
+          110000,
+          29000,
+          0.056249999999999994
+        ],
+        "requirement": "Town Center level 12"
+      },
+      {
+        "id": "13",
+        "label": "Level 13",
+        "cost": [
+          0,
+          830000,
+          830000,
+          160000,
+          41000,
+          0.06875
+        ],
+        "requirement": "Town Center level 13"
+      },
+      {
+        "id": "14",
+        "label": "Level 14",
+        "cost": [
+          0,
+          1100000,
+          1100000,
+          220000,
+          55000,
+          0.0875
+        ],
+        "requirement": "Town Center level 14"
+      },
+      {
+        "id": "15",
+        "label": "Level 15",
+        "cost": [
+          0,
+          1600000,
+          1600000,
+          320000,
+          81000,
+          0.11249999999999999
+        ],
+        "requirement": "Town Center level 15"
+      },
+      {
+        "id": "16",
+        "label": "Level 16",
+        "cost": [
+          0,
+          2000000,
+          2000000,
+          410000,
+          100000,
+          0.19027777777777777
+        ],
+        "requirement": "Town Center level 16"
+      },
+      {
+        "id": "17",
+        "label": "Level 17",
+        "cost": [
+          0,
+          3200000,
+          3200000,
+          650000,
+          160000,
+          0.22847222222222222
+        ],
+        "requirement": "Town Center level 17"
+      },
+      {
+        "id": "18",
+        "label": "Level 18",
+        "cost": [
+          0,
+          4300000,
+          4300000,
+          870000,
+          210000,
+          0.2743055555555556
+        ],
+        "requirement": "Town Center level 18"
+      },
+      {
+        "id": "19",
+        "label": "Level 19",
+        "cost": [
+          0,
+          5400000,
+          5400000,
+          1000000,
+          270000,
+          0.4111111111111111
+        ],
+        "requirement": "Town Center level 19"
+      },
+      {
+        "id": "20",
+        "label": "Level 20",
+        "cost": [
+          0,
+          7500000,
+          7500000,
+          1500000,
+          370000,
+          0.5142361111111111
+        ],
+        "requirement": "Town Center level 20"
+      },
+      {
+        "id": "21",
+        "label": "Level 21",
+        "cost": [
+          0,
+          9500000,
+          9500000,
+          1900000,
+          470000,
+          0.6684027777777778
+        ],
+        "requirement": "Town Center level 21"
+      },
+      {
+        "id": "22",
+        "label": "Level 22",
+        "cost": [
+          0,
+          12000000,
+          12000000,
+          2500000,
+          630000,
+          1.0027777777777778
+        ],
+        "requirement": "Town Center level 22"
+      },
+      {
+        "id": "23",
+        "label": "Level 23",
+        "cost": [
+          0,
+          15000000,
+          15000000,
+          3100000,
+          780000,
+          1.4041666666666666
+        ],
+        "requirement": "Town Center level 23"
+      },
+      {
+        "id": "24",
+        "label": "Level 24",
+        "cost": [
+          0,
+          21000000,
+          21000000,
+          4200000,
+          1000000,
+          1.9659722222222222
+        ],
+        "requirement": "Town Center level 24"
+      },
+      {
+        "id": "25",
+        "label": "Level 25",
+        "cost": [
+          0,
+          28000000,
+          28000000,
+          5700000,
+          1400000,
+          2.752083333333333
+        ],
+        "requirement": "Town Center level 25"
+      },
+      {
+        "id": "26",
+        "label": "Level 26",
+        "cost": [
+          0,
+          36000000,
+          36000000,
+          7300000,
+          1800000,
+          3.1645833333333333
+        ],
+        "requirement": "Town Center level 26"
+      },
+      {
+        "id": "27",
+        "label": "Level 27",
+        "cost": [
+          0,
+          52000000,
+          52000000,
+          10000000,
+          2600000,
+          3.7979166666666666
+        ],
+        "requirement": "Town Center level 27"
+      },
+      {
+        "id": "28",
+        "label": "Level 28",
+        "cost": [
+          0,
+          69000000,
+          69000000,
+          13000000,
+          3400000,
+          4.367361111111111
+        ],
+        "requirement": "Town Center level 28"
+      },
+      {
+        "id": "29",
+        "label": "Level 29",
+        "cost": [
+          0,
+          86000000,
+          86000000,
+          17000000,
+          4300000,
+          5.022916666666666
+        ],
+        "requirement": "Town Center level 29"
+      },
+      {
+        "id": "30",
+        "label": "Level 30",
+        "cost": [
+          0,
+          100000000,
+          100000000,
+          21000000,
+          5800000,
+          6.027777777777778
+        ],
+        "requirement": "Town Center level 30"
+      },
+      {
+        "id": "tg-step-1",
+        "label": "TG1 · step 1/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-2",
+        "label": "TG1 · step 2/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-3",
+        "label": "TG1 · step 3/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-4",
+        "label": "TG1 · step 4/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-5",
+        "label": "TG1",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-6",
+        "label": "TG2 · step 1/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-7",
+        "label": "TG2 · step 2/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-8",
+        "label": "TG2 · step 3/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-9",
+        "label": "TG2 · step 4/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-10",
+        "label": "TG2",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-11",
+        "label": "TG3 · step 1/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-12",
+        "label": "TG3 · step 2/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-13",
+        "label": "TG3 · step 3/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-14",
+        "label": "TG3 · step 4/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-15",
+        "label": "TG3",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      }
+    ]
+  },
+  {
+    "id": "range",
+    "label": "Range",
+    "source": "https://kingshotdata.com/buildings/range/",
+    "steps": [
+      {
+        "id": "1",
+        "label": "Level 1",
+        "cost": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.000023148148148148147
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "2",
+        "label": "Level 2",
+        "cost": [
+          0,
+          140,
+          0,
+          0,
+          0,
+          0.00010416666666666666
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "3",
+        "label": "Level 3",
+        "cost": [
+          0,
+          645,
+          0,
+          0,
+          0,
+          0.0005208333333333333
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "4",
+        "label": "Level 4",
+        "cost": [
+          0,
+          1400,
+          0,
+          285,
+          0,
+          0.0014467592592592594
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "5",
+        "label": "Level 5",
+        "cost": [
+          0,
+          6000,
+          0,
+          1200,
+          0,
+          0.003125
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "6",
+        "label": "Level 6",
+        "cost": [
+          0,
+          15000,
+          0,
+          3000,
+          765,
+          0.00625
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "7",
+        "label": "Level 7",
+        "cost": [
+          0,
+          55000,
+          0,
+          11000,
+          2700,
+          0.0125
+        ],
+        "requirement": "Town Center level 7"
+      },
+      {
+        "id": "8",
+        "label": "Level 8",
+        "cost": [
+          0,
+          100000,
+          0,
+          20000,
+          5000,
+          0.01875
+        ],
+        "requirement": "Town Center level 8"
+      },
+      {
+        "id": "9",
+        "label": "Level 9",
+        "cost": [
+          0,
+          200000,
+          0,
+          41000,
+          10000,
+          0.028125
+        ],
+        "requirement": "Town Center level 9"
+      },
+      {
+        "id": "10",
+        "label": "Level 10",
+        "cost": [
+          0,
+          360000,
+          0,
+          73000,
+          18000,
+          0.0375
+        ],
+        "requirement": "Town Center level 10"
+      },
+      {
+        "id": "11",
+        "label": "Level 11",
+        "cost": [
+          0,
+          460000,
+          460000,
+          92000,
+          23000,
+          0.046875
+        ],
+        "requirement": "Town Center level 11"
+      },
+      {
+        "id": "12",
+        "label": "Level 12",
+        "cost": [
+          0,
+          580000,
+          580000,
+          110000,
+          29000,
+          0.056249999999999994
+        ],
+        "requirement": "Town Center level 12"
+      },
+      {
+        "id": "13",
+        "label": "Level 13",
+        "cost": [
+          0,
+          830000,
+          830000,
+          160000,
+          41000,
+          0.06875
+        ],
+        "requirement": "Town Center level 13"
+      },
+      {
+        "id": "14",
+        "label": "Level 14",
+        "cost": [
+          0,
+          1100000,
+          1100000,
+          220000,
+          55000,
+          0.0875
+        ],
+        "requirement": "Town Center level 14"
+      },
+      {
+        "id": "15",
+        "label": "Level 15",
+        "cost": [
+          0,
+          1600000,
+          1600000,
+          320000,
+          81000,
+          0.11249999999999999
+        ],
+        "requirement": "Town Center level 15"
+      },
+      {
+        "id": "16",
+        "label": "Level 16",
+        "cost": [
+          0,
+          2000000,
+          2000000,
+          410000,
+          100000,
+          0.19027777777777777
+        ],
+        "requirement": "Town Center level 16"
+      },
+      {
+        "id": "17",
+        "label": "Level 17",
+        "cost": [
+          0,
+          3200000,
+          3200000,
+          650000,
+          160000,
+          0.22847222222222222
+        ],
+        "requirement": "Town Center level 17"
+      },
+      {
+        "id": "18",
+        "label": "Level 18",
+        "cost": [
+          0,
+          4300000,
+          4300000,
+          870000,
+          210000,
+          0.2743055555555556
+        ],
+        "requirement": "Town Center level 18"
+      },
+      {
+        "id": "19",
+        "label": "Level 19",
+        "cost": [
+          0,
+          5400000,
+          5400000,
+          1000000,
+          270000,
+          0.4111111111111111
+        ],
+        "requirement": "Town Center level 19"
+      },
+      {
+        "id": "20",
+        "label": "Level 20",
+        "cost": [
+          0,
+          7500000,
+          7500000,
+          1500000,
+          370000,
+          0.5142361111111111
+        ],
+        "requirement": "Town Center level 20"
+      },
+      {
+        "id": "21",
+        "label": "Level 21",
+        "cost": [
+          0,
+          9500000,
+          9500000,
+          1900000,
+          470000,
+          0.6684027777777778
+        ],
+        "requirement": "Town Center level 21"
+      },
+      {
+        "id": "22",
+        "label": "Level 22",
+        "cost": [
+          0,
+          12000000,
+          12000000,
+          2500000,
+          630000,
+          1.0027777777777778
+        ],
+        "requirement": "Town Center level 22"
+      },
+      {
+        "id": "23",
+        "label": "Level 23",
+        "cost": [
+          0,
+          15000000,
+          15000000,
+          3100000,
+          780000,
+          1.4041666666666666
+        ],
+        "requirement": "Town Center level 23"
+      },
+      {
+        "id": "24",
+        "label": "Level 24",
+        "cost": [
+          0,
+          21000000,
+          21000000,
+          4200000,
+          1000000,
+          1.9659722222222222
+        ],
+        "requirement": "Town Center level 24"
+      },
+      {
+        "id": "25",
+        "label": "Level 25",
+        "cost": [
+          0,
+          28000000,
+          28000000,
+          5700000,
+          1400000,
+          2.752083333333333
+        ],
+        "requirement": "Town Center level 25"
+      },
+      {
+        "id": "26",
+        "label": "Level 26",
+        "cost": [
+          0,
+          36000000,
+          36000000,
+          7300000,
+          1800000,
+          3.1645833333333333
+        ],
+        "requirement": "Town Center level 26"
+      },
+      {
+        "id": "27",
+        "label": "Level 27",
+        "cost": [
+          0,
+          52000000,
+          52000000,
+          10000000,
+          2600000,
+          3.7979166666666666
+        ],
+        "requirement": "Town Center level 27"
+      },
+      {
+        "id": "28",
+        "label": "Level 28",
+        "cost": [
+          0,
+          69000000,
+          69000000,
+          13000000,
+          3400000,
+          4.367361111111111
+        ],
+        "requirement": "Town Center level 28"
+      },
+      {
+        "id": "29",
+        "label": "Level 29",
+        "cost": [
+          0,
+          86000000,
+          86000000,
+          17000000,
+          4300000,
+          5.022916666666666
+        ],
+        "requirement": "Town Center level 29"
+      },
+      {
+        "id": "30",
+        "label": "Level 30",
+        "cost": [
+          0,
+          100000000,
+          100000000,
+          21000000,
+          5800000,
+          6.027777777777778
+        ],
+        "requirement": "Town Center level 30"
+      },
+      {
+        "id": "tg-step-1",
+        "label": "TG1 · step 1/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-2",
+        "label": "TG1 · step 2/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-3",
+        "label": "TG1 · step 3/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-4",
+        "label": "TG1 · step 4/5",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-5",
+        "label": "TG1",
+        "cost": [
+          59,
+          23000000,
+          23000000,
+          4700000,
+          1100000,
+          1.05
+        ],
+        "requirement": "Town Center TG Lv. 1"
+      },
+      {
+        "id": "tg-step-6",
+        "label": "TG2 · step 1/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-7",
+        "label": "TG2 · step 2/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-8",
+        "label": "TG2 · step 3/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-9",
+        "label": "TG2 · step 4/5",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-10",
+        "label": "TG2",
+        "cost": [
+          71,
+          25000000,
+          25000000,
+          5000000,
+          1200000,
+          1.3499999999999999
+        ],
+        "requirement": "Town Center TG Lv. 2"
+      },
+      {
+        "id": "tg-step-11",
+        "label": "TG3 · step 1/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-12",
+        "label": "TG3 · step 2/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-13",
+        "label": "TG3 · step 3/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-14",
+        "label": "TG3 · step 4/5",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      },
+      {
+        "id": "tg-step-15",
+        "label": "TG3",
+        "cost": [
+          107,
+          27000000,
+          27000000,
+          5500000,
+          1300000,
+          1.65
+        ],
+        "requirement": "Town Center TG Lv. 3"
+      }
+    ]
+  }
+]

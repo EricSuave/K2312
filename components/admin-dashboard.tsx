@@ -1,0 +1,57 @@
+'use client';
+import {useEffect,useState,type FormEvent} from 'react';
+import {alliances,type KingdomEvent} from '@/data/kingdom';
+import {gearOptions} from '@/data/equipment';
+import {transferSettings} from '@/data/transfers';
+
+type Row={id?:string;user_id?:string;kind?:string;cycle?:string;payload?:Record<string,unknown>;members?:{player_id:string;player_name:string;alliance:string};[key:string]:unknown};
+type Tab='profile'|'availability'|'prep'|'transfers'|'events'|'gallery';
+const tabs:[Tab,string][]=[['profile','Player profiles'],['availability','Battle availability'],['prep','KvK prep'],['transfers','Transfers'],['events','Events'],['gallery','Gallery']];
+const text=(value:unknown)=>typeof value==='string'?value:String(value??'');
+const label=(value:string)=>value.replaceAll('_',' ').replace(/\b\w/g,letter=>letter.toUpperCase());
+function FieldValue({value}:{value:unknown}){
+  if(value===null||value===undefined||value==='')return <>Not specified</>;
+  if(Array.isArray(value))return <>{value.length?value.map(item=>typeof item==='string'?(gearOptions.find(option=>option.value===item)?.label??item):String(item)).join(', '):'None selected'}</>;
+  if(typeof value==='object')return <dl className="submission-details">{Object.entries(value as Record<string,unknown>).map(([key,item])=><div key={key}><dt>{label(key)}</dt><dd><FieldValue value={item}/></dd></div>)}</dl>;
+  return <>{gearOptions.find(option=>option.value===value)?.label??String(value)}</>;
+}
+
+export function AdminDashboard(){
+  const[tab,setTab]=useState<Tab>('profile');const[page,setPage]=useState(0);const[revision,setRevision]=useState(0);
+  const[items,setItems]=useState<Row[]>([]);const[hasMore,setHasMore]=useState(false);const[loading,setLoading]=useState(true);const[busy,setBusy]=useState(false);
+  const[message,setMessage]=useState('');const[error,setError]=useState(false);const[loadError,setLoadError]=useState(false);
+  const[editing,setEditing]=useState<KingdomEvent|null|undefined>(undefined);
+  const resource=['profile','availability','prep'].includes(tab)?'forms':tab;
+  useEffect(()=>{
+    const controller=new AbortController();setLoading(true);setLoadError(false);
+    fetch(`/api/admin/${resource}?offset=${page*100}${resource==='forms'?`&kind=${tab}`:''}`,{signal:controller.signal,cache:'no-store'}).then(async response=>{
+      const result=await response.json();if(!response.ok)throw new Error(result.error||'Unable to load this section.');setItems(result.items);setHasMore(result.has_more);
+    }).catch(cause=>{if(cause.name!=='AbortError'){setMessage(cause.message);setError(true);setLoadError(true);}}).finally(()=>{if(!controller.signal.aborted)setLoading(false)});
+    return()=>controller.abort();
+  },[resource,tab,page,revision]);
+  async function write(endpoint:string,method:string,body:unknown){
+    setBusy(true);setMessage('');setError(false);
+    try{const multipart=body instanceof FormData;const response=await fetch(endpoint,{method,headers:multipart?undefined:{'Content-Type':'application/json'},body:multipart?body:JSON.stringify(body)});const result=await response.json();if(!response.ok)throw new Error(result.error||'Unable to save.');setMessage(method==='DELETE'?'Removed.':'Saved.');setRevision(value=>value+1);return true;}
+    catch(cause){setError(true);setMessage(cause instanceof Error?cause.message:'Unable to save. Please retry.');return false;}
+    finally{setBusy(false);}
+  }
+  async function remove(row:Row){if(window.confirm(`Delete “${text(row.title)}”? This cannot be undone.`))await write(`/api/admin/${resource}`,'DELETE',{id:row.id});}
+  return <div className="wrap page-body admin-dashboard">
+    <div className="guide-tabs" aria-label="Administration sections">{tabs.map(([key,title])=><button type="button" key={key} aria-pressed={key===tab} onClick={()=>{setTab(key);setPage(0);setEditing(undefined);setMessage('')}}>{title}</button>)}</div>
+    {message&&<p role={error?'alert':'status'} className={`form-message ${error?'error':''}`}>{message}</p>}
+    {tab==='transfers'&&transferSettings.formUrl&&<div className="notice">Transfer applications use Google Forms. Review those responses from the form owner’s Google Forms account; they do not appear here automatically. This section contains only applications submitted through this website.</div>}
+    {tab==='events'&&<><button className="button" onClick={()=>setEditing(null)}>Create event</button>{editing!==undefined&&<EventEditor key={editing?.id??'new'} event={editing} busy={busy} cancel={()=>setEditing(undefined)} save={async values=>{if(await write('/api/admin/events','POST',values))setEditing(undefined)}}/>}</>}
+    {tab==='gallery'&&<details className="card admin-upload"><summary>Upload a gallery image</summary><form onSubmit={async event=>{event.preventDefault();const form=event.currentTarget;if(await write('/api/admin/gallery-upload','POST',new FormData(form)))form.reset()}}><div className="form-grid"><label>Image (JPEG, PNG, WebP · max 4 MB)<input name="image" type="file" accept="image/jpeg,image/png,image/webp" required/></label><label>Title<input name="title" required maxLength={120}/></label><label>Category<input name="category" required maxLength={60}/></label><label>Date taken<input name="taken_on" type="date"/></label></div><label>Caption / image description<textarea name="caption" required maxLength={1000}/></label><label className="inline-check"><input name="published" type="checkbox"/>Publish in the public gallery</label><button className="button" disabled={busy}>{busy?'Uploading…':'Upload image'}</button></form></details>}
+    {loading?<p className="admin-loading" role="status">Loading records…</p>:loadError?<button className="button" onClick={()=>setRevision(value=>value+1)}>Retry loading</button>:items.length===0?<div className="empty-state"><h2>No records yet.</h2><p>{resource==='forms'?'Saved member forms will appear here.':tab==='transfers'?(transferSettings.formUrl?'There are no applications submitted through this website. Check Google Forms for new transfer responses.':'New applications will appear here.'):tab==='events'?'Create your first kingdom event above.':'Upload a kingdom image above.'}</p></div>:<div className="admin-records">{items.map((row,index)=><article className="card admin-record" key={row.id??`${row.user_id}-${row.cycle}-${index}`}>
+      {resource==='forms'?<><div className="eyebrow">[{row.members?.alliance}] · ID {row.members?.player_id}</div><h2>{row.members?.player_name||'Member'}</h2><p>{row.cycle==='current'?'Current profile':`KvK battle date: ${row.cycle}`} · Updated {new Date(text(row.updated_at)).toLocaleString('en-GB',{timeZone:'UTC'})} UTC</p><details><summary>View saved {tab==='profile'?'profile':tab==='prep'?'preparation':'availability'}</summary><FieldValue value={row.payload}/></details></>:
+      tab==='transfers'?<><div className="eyebrow">ID {text(row.player_id)} · Kingdom {text(row.current_kingdom)}</div><h2>{text(row.player_name)}</h2><dl className="submission-details">{['preferred_alliance','preferred_times','kvk_participation','languages','contact','notes'].map(key=><div key={key}><dt>{label(key)}</dt><dd>{text(row[key])||'Not provided'}</dd></div>)}</dl><form onSubmit={event=>{event.preventDefault();const data=new FormData(event.currentTarget);void write('/api/admin/transfers','POST',{id:row.id,status:data.get('status'),admin_notes:data.get('admin_notes')})}}><label>Review status<select name="status" defaultValue={text(row.status)}>{['new','reviewing','approved','declined'].map(status=><option key={status}>{status}</option>)}</select></label><label>Leadership notes<textarea name="admin_notes" maxLength={4000} defaultValue={text(row.admin_notes)}/></label><button className="button small" disabled={busy}>Save review</button></form></>:
+      tab==='events'?<><div className="eyebrow">{text(row.kind)} · {row.published?'Published':'Unpublished'}</div><h2>{text(row.title)}</h2><p>{text(row.starts_at).replace('T',' ')} → {text(row.ends_at).replace('T',' ')} (UTC)</p><p>{text(row.description)}</p><div className="button-row"><button className="button secondary" onClick={()=>setEditing(row as unknown as KingdomEvent)}>Edit event</button><button className="button danger" disabled={busy} onClick={()=>void remove(row)}>Delete event</button></div></>:
+      <><img className="admin-gallery-image" src={text(row.image_url)} alt={text(row.caption)}/><h2>{text(row.title)}</h2><p>{text(row.caption)}</p><p>{text(row.category)} · {text(row.taken_on)||'No date recorded'}</p><div className="button-row"><button className="button secondary" disabled={busy} onClick={()=>void write('/api/admin/gallery','POST',{id:row.id,title:row.title,caption:row.caption,category:row.category,taken_on:row.taken_on,published:!row.published})}>{row.published?'Unpublish':'Publish'}</button><button className="button danger" disabled={busy} onClick={()=>void remove(row)}>Delete image</button></div></>}
+    </article>)}</div>}
+    {(page>0||hasMore)&&<div className="button-row"><button className="button secondary" disabled={page===0||loading} onClick={()=>setPage(value=>value-1)}>Previous page</button><span>Page {page+1}</span><button className="button secondary" disabled={!hasMore||loading} onClick={()=>setPage(value=>value+1)}>Next page</button></div>}
+  </div>;
+}
+function EventEditor({event,busy,cancel,save}:{event:KingdomEvent|null;busy:boolean;cancel:()=>void;save:(value:unknown)=>Promise<void>}){
+  function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();const data=new FormData(e.currentTarget);void save({...(event?{id:event.id}:{}),title:data.get('title'),kind:data.get('kind'),alliance:data.get('alliance')||null,starts_at:`${data.get('starts_at')}:00Z`,ends_at:`${data.get('ends_at')}:00Z`,description:data.get('description'),published:data.get('published')==='on'});}
+  return <form className="card admin-editor" onSubmit={submit}><h2>{event?'Edit event':'New event'}</h2><div className="form-grid"><label>Title<input name="title" required maxLength={120} defaultValue={event?.title??''}/></label><label>Event type<select name="kind" defaultValue={event?.kind??'Alliance'}>{['Bear Hunt','KvK','Alliance'].map(kind=><option key={kind}>{kind}</option>)}</select></label><label>Alliance<select name="alliance" defaultValue={event?.alliance??''}><option value="">Whole kingdom</option>{alliances.map(alliance=><option key={alliance.tag}>{alliance.tag}</option>)}</select></label><label>Starts at (UTC)<input name="starts_at" type="datetime-local" required defaultValue={event?.starts_at.slice(0,16)??''}/></label><label>Ends at (UTC)<input name="ends_at" type="datetime-local" required defaultValue={event?.ends_at.slice(0,16)??''}/></label></div><label>Description<textarea name="description" required maxLength={3000} defaultValue={event?.description??''}/></label><label className="inline-check"><input name="published" type="checkbox" defaultChecked={event?.published}/>Publish event</label><div className="button-row"><button className="button" disabled={busy}>{busy?'Saving…':'Save event'}</button><button className="button secondary" type="button" onClick={cancel}>Cancel</button></div></form>;
+}

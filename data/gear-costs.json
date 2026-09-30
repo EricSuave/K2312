@@ -1,0 +1,524 @@
+[
+  {
+    "id": "green-0",
+    "label": "Green · 0 stars",
+    "cost": [
+      1500,
+      15,
+      0
+    ]
+  },
+  {
+    "id": "green-1",
+    "label": "Green · 1 stars",
+    "cost": [
+      3800,
+      40,
+      0
+    ]
+  },
+  {
+    "id": "blue-0",
+    "label": "Blue · 0 stars",
+    "cost": [
+      7000,
+      70,
+      0
+    ]
+  },
+  {
+    "id": "blue-1",
+    "label": "Blue · 1 stars",
+    "cost": [
+      9700,
+      95,
+      0
+    ]
+  },
+  {
+    "id": "blue-2",
+    "label": "Blue · 2 stars",
+    "cost": [
+      1000,
+      10,
+      45
+    ]
+  },
+  {
+    "id": "blue-3",
+    "label": "Blue · 3 stars",
+    "cost": [
+      1000,
+      10,
+      50
+    ]
+  },
+  {
+    "id": "purple-0",
+    "label": "Purple · 0 stars",
+    "cost": [
+      1500,
+      15,
+      60
+    ]
+  },
+  {
+    "id": "purple-1",
+    "label": "Purple · 1 stars",
+    "cost": [
+      1500,
+      15,
+      70
+    ]
+  },
+  {
+    "id": "purple-2",
+    "label": "Purple · 2 stars",
+    "cost": [
+      6500,
+      65,
+      40
+    ]
+  },
+  {
+    "id": "purple-3",
+    "label": "Purple · 3 stars",
+    "cost": [
+      8000,
+      80,
+      50
+    ]
+  },
+  {
+    "id": "purple-t1-0",
+    "label": "Purple T1 · 0 stars",
+    "cost": [
+      10000,
+      95,
+      60
+    ]
+  },
+  {
+    "id": "purple-t1-1",
+    "label": "Purple T1 · 1 stars",
+    "cost": [
+      11000,
+      110,
+      70
+    ]
+  },
+  {
+    "id": "purple-t1-2",
+    "label": "Purple T1 · 2 stars",
+    "cost": [
+      13000,
+      130,
+      85
+    ]
+  },
+  {
+    "id": "purple-t1-3",
+    "label": "Purple T1 · 3 stars",
+    "cost": [
+      15000,
+      160,
+      100
+    ]
+  },
+  {
+    "id": "gold-0",
+    "label": "Gold · 0 stars",
+    "cost": [
+      22000,
+      220,
+      40
+    ]
+  },
+  {
+    "id": "gold-1",
+    "label": "Gold · 1 stars",
+    "cost": [
+      23000,
+      230,
+      40
+    ]
+  },
+  {
+    "id": "gold-2",
+    "label": "Gold · 2 stars",
+    "cost": [
+      25000,
+      250,
+      45
+    ]
+  },
+  {
+    "id": "gold-3",
+    "label": "Gold · 3 stars",
+    "cost": [
+      26000,
+      260,
+      45
+    ]
+  },
+  {
+    "id": "gold-t1-0",
+    "label": "Gold T1 · 0 stars",
+    "cost": [
+      28000,
+      280,
+      45
+    ]
+  },
+  {
+    "id": "gold-t1-1",
+    "label": "Gold T1 · 1 stars",
+    "cost": [
+      30000,
+      300,
+      55
+    ]
+  },
+  {
+    "id": "gold-t1-2",
+    "label": "Gold T1 · 2 stars",
+    "cost": [
+      32000,
+      320,
+      55
+    ]
+  },
+  {
+    "id": "gold-t1-3",
+    "label": "Gold T1 · 3 stars",
+    "cost": [
+      35000,
+      340,
+      55
+    ]
+  },
+  {
+    "id": "gold-t2-0",
+    "label": "Gold T2 · 0 stars",
+    "cost": [
+      38000,
+      390,
+      55
+    ]
+  },
+  {
+    "id": "gold-t2-1",
+    "label": "Gold T2 · 1 stars",
+    "cost": [
+      43000,
+      430,
+      75
+    ]
+  },
+  {
+    "id": "gold-t2-2",
+    "label": "Gold T2 · 2 stars",
+    "cost": [
+      45000,
+      460,
+      80
+    ]
+  },
+  {
+    "id": "gold-t2-3",
+    "label": "Gold T2 · 3 stars",
+    "cost": [
+      48000,
+      500,
+      85
+    ]
+  },
+  {
+    "id": "gold-t3-0",
+    "label": "Gold T3 · 0 stars",
+    "cost": [
+      60000,
+      600,
+      120
+    ]
+  },
+  {
+    "id": "gold-t3-1",
+    "label": "Gold T3 · 1 stars",
+    "cost": [
+      70000,
+      700,
+      140
+    ]
+  },
+  {
+    "id": "gold-t3-2",
+    "label": "Gold T3 · 2 stars",
+    "cost": [
+      80000,
+      800,
+      160
+    ]
+  },
+  {
+    "id": "gold-t3-3",
+    "label": "Gold T3 · 3 stars",
+    "cost": [
+      90000,
+      900,
+      180
+    ]
+  },
+  {
+    "id": "red-0",
+    "label": "Red · 0 stars",
+    "cost": [
+      108000,
+      1080,
+      220
+    ]
+  },
+  {
+    "id": "red-1",
+    "label": "Red · 1 stars",
+    "cost": [
+      114000,
+      1140,
+      230
+    ]
+  },
+  {
+    "id": "red-2",
+    "label": "Red · 2 stars",
+    "cost": [
+      121000,
+      1210,
+      240
+    ]
+  },
+  {
+    "id": "red-3",
+    "label": "Red · 3 stars",
+    "cost": [
+      128000,
+      1280,
+      250
+    ]
+  },
+  {
+    "id": "red-t1-0",
+    "label": "Red T1 · 0 stars",
+    "cost": [
+      154000,
+      1540,
+      300
+    ]
+  },
+  {
+    "id": "red-t1-1",
+    "label": "Red T1 · 1 stars",
+    "cost": [
+      163000,
+      1630,
+      320
+    ]
+  },
+  {
+    "id": "red-t1-2",
+    "label": "Red T1 · 2 stars",
+    "cost": [
+      173000,
+      1730,
+      340
+    ]
+  },
+  {
+    "id": "red-t1-3",
+    "label": "Red T1 · 3 stars",
+    "cost": [
+      183000,
+      1830,
+      360
+    ]
+  },
+  {
+    "id": "red-t2-0",
+    "label": "Red T2 · 0 stars",
+    "cost": [
+      220000,
+      2200,
+      430
+    ]
+  },
+  {
+    "id": "red-t2-1",
+    "label": "Red T2 · 1 stars",
+    "cost": [
+      233000,
+      2330,
+      460
+    ]
+  },
+  {
+    "id": "red-t2-2",
+    "label": "Red T2 · 2 stars",
+    "cost": [
+      247000,
+      2470,
+      490
+    ]
+  },
+  {
+    "id": "red-t2-3",
+    "label": "Red T2 · 3 stars",
+    "cost": [
+      264000,
+      2640,
+      520
+    ]
+  },
+  {
+    "id": "red-t3-0",
+    "label": "Red T3 · 0 stars",
+    "cost": [
+      288000,
+      2880,
+      570
+    ]
+  },
+  {
+    "id": "red-t3-1",
+    "label": "Red T3 · 1 stars",
+    "cost": [
+      302000,
+      3020,
+      600
+    ]
+  },
+  {
+    "id": "red-t3-2",
+    "label": "Red T3 · 2 stars",
+    "cost": [
+      317000,
+      3170,
+      630
+    ]
+  },
+  {
+    "id": "red-t3-3",
+    "label": "Red T3 · 3 stars",
+    "cost": [
+      333000,
+      3330,
+      660
+    ]
+  },
+  {
+    "id": "red-t4-0",
+    "label": "Red T4 · 0 stars",
+    "cost": [
+      358000,
+      3580,
+      720
+    ]
+  },
+  {
+    "id": "red-t4-1",
+    "label": "Red T4 · 1 stars",
+    "cost": [
+      384000,
+      3840,
+      770
+    ]
+  },
+  {
+    "id": "red-t4-2",
+    "label": "Red T4 · 2 stars",
+    "cost": [
+      403000,
+      4030,
+      810
+    ]
+  },
+  {
+    "id": "red-t4-3",
+    "label": "Red T4 · 3 stars",
+    "cost": [
+      423000,
+      4230,
+      850
+    ]
+  },
+  {
+    "id": "red-t5-0",
+    "label": "Red T5 · 0 stars",
+    "cost": [
+      451000,
+      4510,
+      910
+    ]
+  },
+  {
+    "id": "red-t5-1",
+    "label": "Red T5 · 1 stars",
+    "cost": [
+      479000,
+      4790,
+      970
+    ]
+  },
+  {
+    "id": "red-t5-2",
+    "label": "Red T5 · 2 stars",
+    "cost": [
+      507000,
+      5070,
+      1030
+    ]
+  },
+  {
+    "id": "red-t5-3",
+    "label": "Red T5 · 3 stars",
+    "cost": [
+      535000,
+      5350,
+      1090
+    ]
+  },
+  {
+    "id": "red-t6-0",
+    "label": "Red T6 · 0 stars",
+    "cost": [
+      548000,
+      5480,
+      1110
+    ]
+  },
+  {
+    "id": "red-t6-1",
+    "label": "Red T6 · 1 stars",
+    "cost": [
+      565000,
+      5650,
+      1140
+    ]
+  },
+  {
+    "id": "red-t6-2",
+    "label": "Red T6 · 2 stars",
+    "cost": [
+      582000,
+      5820,
+      1170
+    ]
+  },
+  {
+    "id": "red-t6-3",
+    "label": "Red T6 · 3 stars",
+    "cost": [
+      599000,
+      5990,
+      1210
+    ]
+  }
+]

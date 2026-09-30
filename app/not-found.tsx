@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function NotFound(){return <div className="wrap empty-state page-body"><span className="eyebrow">404 / OFF THE MAP</span><h1 className="text-6xl">This page hasn’t rallied yet.</h1><p>Try the kingdom home or choose a page from the navigation.</p><Link className="button" href="/">Back to the kingdom</Link></div>}
