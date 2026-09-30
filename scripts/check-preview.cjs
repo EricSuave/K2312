@@ -1,0 +1,43 @@
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const vm=require('node:vm');
+const {JSDOM,VirtualConsole}=require('jsdom');
+const file=process.argv[2]||'/workspace/kingdom-2312-battle-timeline.html';
+const fragment=fs.readFileSync(file,'utf8');
+assert.ok(Buffer.byteLength(fragment)<1e6,'The inline presentation must fit the renderer limit.');
+new vm.Script(fragment.slice(fragment.indexOf('<script>')+8,fragment.lastIndexOf('</script>')));
+const failures=[];const virtualConsole=new VirtualConsole();
+virtualConsole.on('jsdomError',error=>failures.push(error.message));
+virtualConsole.on('error',(...args)=>failures.push(args.map(String).join(' ')));
+const dom=new JSDOM(fragment,{url:'https://preview.example/',runScripts:'dangerously',pretendToBeVisual:true,virtualConsole,beforeParse(window){window.HTMLElement.prototype.scrollIntoView=function(){};window.fetch=()=>{throw new Error('Preview attempted a network request.')}}});
+const {window}=dom;const document=window.document;
+const tick=()=>new Promise(resolve=>setTimeout(resolve,40));
+const $=selector=>{const node=document.querySelector(selector);assert.ok(node,`Missing ${selector}`);return node};
+const button=label=>{const node=[...document.querySelectorAll('button')].find(button=>button.textContent.includes(label));assert.ok(node,`Missing button: ${label}`);return node};
+function value(selector,next){const element=$(selector);const setter=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element),'value').set;setter.call(element,next);element.dispatchEvent(new window.Event(element.tagName==='SELECT'?'change':'input',{bubbles:true}));}
+async function navigate(path){$(`.showcase-header a[href="${path}"]`).click();await tick();}
+(async()=>{
+  await tick();
+  assert.equal($('select[name=start_time]').options[1].value,'10:00');
+  assert.equal($('select[name=end_time]').options[$('select[name=end_time]').options.length-1].value,'22:00');
+  button('Castle battle ·').click();await tick();
+  assert.equal($('select[name=start_time]').value,'12:00');assert.equal($('select[name=end_time]').value,'17:00');
+  value('select[name=start_time]','20:00');await tick();assert.equal($('select[name=end_time]').value,'');
+  value('select[name=attendance]','unavailable');await tick();assert.ok($('fieldset.availability-window').hidden);assert.ok($('fieldset.availability-window').disabled);
+  value('input[name=event_date]','2026-10-03');await tick();$('form.profile-form').dispatchEvent(new window.Event('submit',{bubbles:true,cancelable:true}));await tick();assert.match($('.form-message').textContent,/Entries checked/);
+  await navigate('/members/profile');
+  assert.equal(document.querySelector('input[name=power]'),null);assert.equal(document.querySelector('input[name=Infantry_count]'),null);
+  const lastGear=[...document.querySelectorAll('datalist option')].some(option=>/Red.*T6.*3/.test(option.value));assert.ok(lastGear,'Full Governor Gear maximum missing.');
+  assert.ok([...$('select[name=charm_coat_1]').options].some(option=>option.value==='22'));
+  value('input[type=search]','Zoe');await tick();assert.equal(document.querySelectorAll('.hero-selection button').length,1);button('Zoe').click();await tick();assert.equal(button('Zoe').getAttribute('aria-pressed'),'true');
+  await navigate('/members/prep');
+  assert.deepEqual([...document.querySelectorAll('.prep-day-badge')].map(node=>node.textContent),['DAY 1','DAY 2','DAY 4','DAY 5']);
+  const slot=$('button[aria-label="Day 1, 12:15 UTC"]');slot.click();await tick();assert.equal(slot.getAttribute('aria-pressed'),'true');assert.ok(document.querySelector('input[name=day_1_times][value="12:15"]'));assert.ok($('input[name=construction_speedup_days]').parentElement.textContent.includes('days'));
+  await navigate('/tools');assert.equal(document.querySelectorAll('.tool-card').length,3);assert.ok(!document.querySelector('a[href="/tools/pets"]'));assert.ok(!document.querySelector('a[href="/tools/event-shop"]'));
+  $('a[href="/tools/gear"]').click();await tick();const before=$('.reach-level').textContent;button('Load example').click();await tick();assert.notEqual($('.reach-level').textContent,before);assert.match(document.querySelector('main').textContent,/Total cost to your requested target/);
+  await navigate('/guides');value('input[aria-label="Search guides"]','Marlin');await tick();assert.equal(document.querySelectorAll('.guide-card').length,1);assert.ok($('.guide-card').textContent.includes('Generation 2'));
+  await navigate('/timeline');assert.ok($('a[href="https://kingshotoptimizer.com/kingdom-timeline/2312/"]'));assert.match(document.querySelector('main').textContent,/Generation 2/);
+  assert.deepEqual(failures,[],'Browser-emulation console errors');
+  process.stdout.write('PASS: battle windows, profile fields, searchable heroes, prep slots, three upgrade tools, live calculation, guide search, timeline, and no network requests.\n');
+  dom.window.close();
+})().catch(error=>{process.stderr.write(error.stack+'\n');dom.window.close();process.exitCode=1});
