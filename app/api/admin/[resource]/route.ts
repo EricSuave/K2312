@@ -15,7 +15,7 @@ export async function GET(request:Request,{params}:{params:Promise<{resource:str
     const{client}=await adminClient();const resource=resourceName((await params).resource);const url=new URL(request.url);
     const offset=z.coerce.number().int().min(0).max(100000).parse(url.searchParams.get('offset')??0);
     let query=client.from(tables[resource]).select('*').order(resource==='forms'?'updated_at':'created_at',{ascending:false});
-    if(resource==='forms'){const kind=z.enum(['profile','availability','prep']).parse(url.searchParams.get('kind'));query=query.eq('kind',kind);}
+    if(resource==='forms'){const kind=z.enum(['profile','availability','prep']).parse(url.searchParams.get('kind'));query=query.eq('kind',kind).order('user_id',{ascending:true}).order('cycle',{ascending:true});}
     const{data,error}=await query.range(offset,offset+100);if(error)throw error;
     let items=(data??[]).slice(0,100);
     if(resource==='forms'&&items.length){const{data:members,error:memberError}=await client.from('members').select('id,player_id,player_name,alliance').in('id',[...new Set(items.map(item=>item.user_id))]);if(memberError)throw memberError;items=items.map(item=>({...item,members:members?.find(member=>member.id===item.user_id)}));}

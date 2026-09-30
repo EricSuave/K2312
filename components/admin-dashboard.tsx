@@ -2,11 +2,12 @@
 import {useEffect,useState,type FormEvent} from 'react';
 import {alliances,type KingdomEvent} from '@/data/kingdom';
 import {gearOptions} from '@/data/equipment';
+import {PrepRankings} from './prep-rankings';
 import {transferSettings} from '@/data/transfers';
 
 type Row={id?:string;user_id?:string;kind?:string;cycle?:string;payload?:Record<string,unknown>;members?:{player_id:string;player_name:string;alliance:string};[key:string]:unknown};
 type Tab='profile'|'availability'|'prep'|'transfers'|'events'|'gallery';
-const tabs:[Tab,string][]=[['profile','Player profiles'],['availability','Battle availability'],['prep','KvK prep'],['transfers','Transfers'],['events','Events'],['gallery','Gallery']];
+const tabs:[Tab,string][]=[['profile','Player profiles'],['availability','Battle availability'],['prep','KvK prep & schedule'],['transfers','Transfers'],['events','Events'],['gallery','Gallery']];
 const text=(value:unknown)=>typeof value==='string'?value:String(value??'');
 const label=(value:string)=>value.replaceAll('_',' ').replace(/\b\w/g,letter=>letter.toUpperCase());
 function FieldValue({value}:{value:unknown}){
@@ -39,6 +40,7 @@ export function AdminDashboard(){
   return <div className="wrap page-body admin-dashboard">
     <div className="guide-tabs" aria-label="Administration sections">{tabs.map(([key,title])=><button type="button" key={key} aria-pressed={key===tab} onClick={()=>{setTab(key);setPage(0);setEditing(undefined);setMessage('')}}>{title}</button>)}</div>
     {message&&<p role={error?'alert':'status'} className={`form-message ${error?'error':''}`}>{message}</p>}
+    {tab==='prep'&&<PrepRankings/>}
     {tab==='transfers'&&transferSettings.formUrl&&<div className="notice">Transfer applications use Google Forms. Review those responses from the form owner’s Google Forms account; they do not appear here automatically. This section contains only applications submitted through this website.</div>}
     {tab==='events'&&<><button className="button" onClick={()=>setEditing(null)}>Create event</button>{editing!==undefined&&<EventEditor key={editing?.id??'new'} event={editing} busy={busy} cancel={()=>setEditing(undefined)} save={async values=>{if(await write('/api/admin/events','POST',values))setEditing(undefined)}}/>}</>}
     {tab==='gallery'&&<details className="card admin-upload"><summary>Upload a gallery image</summary><form onSubmit={async event=>{event.preventDefault();const form=event.currentTarget;if(await write('/api/admin/gallery-upload','POST',new FormData(form)))form.reset()}}><div className="form-grid"><label>Image (JPEG, PNG, WebP · max 4 MB)<input name="image" type="file" accept="image/jpeg,image/png,image/webp" required/></label><label>Title<input name="title" required maxLength={120}/></label><label>Category<input name="category" required maxLength={60}/></label><label>Date taken<input name="taken_on" type="date"/></label></div><label>Caption / image description<textarea name="caption" required maxLength={1000}/></label><label className="inline-check"><input name="published" type="checkbox"/>Publish in the public gallery</label><button className="button" disabled={busy}>{busy?'Uploading…':'Upload image'}</button></form></details>}

@@ -30,9 +30,11 @@ export const battleFormSchema=z.object({
   if(error)ctx.addIssue({code:'custom',message:error,path:['ends_at']});
   if(data.attendance!=='unavailable'&&!data.role)ctx.addIssue({code:'custom',message:'Choose your preferred role.',path:['role']});
 });
+// Array order is the member’s priority order; never sort these values when saving.
 const times=z.array(z.enum(prepTimeSlots)).max(48).refine(values=>new Set(values).size===values.length,'Choose each time once.');
 const days=z.number().finite().min(0).max(1e6);
 export const prepFormSchema=z.object({
+  training_batch:z.object({tier:z.number().int().min(1).max(10),from_tier:z.number().int().min(0).max(9),quantity:z.number().int().min(1).max(1000000),duration_days:z.number().positive().max(1000)}).strict().refine(b=>b.from_tier<b.tier,'Promotion starting tier must be below the target tier.').optional(),
   battle_date:z.iso.date(),construction_targets:z.array(z.enum(['TG1','TG2','TG3'])).max(3),
   truegold:amount.int(),construction_speedup_days:days,research_speedup_days:days,training_speedup_days:days,
   day_1_minister:z.enum(['yes','no']),day_2_minister:z.enum(['yes','no']),day_4_minister:z.enum(['yes','no']),

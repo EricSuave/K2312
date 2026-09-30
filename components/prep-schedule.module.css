@@ -1,0 +1,27 @@
+.panel{margin:24px 0;min-width:0}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0}
+.summary{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+.summary span{padding:12px 16px;border:1px solid #59482c;border-radius:8px;background:#161a20;color:#f1d99e}
+.tableWrap{overflow-x:auto;border:1px solid #34383e;border-radius:8px;margin:16px 0;max-height:620px}
+.table{width:100%;border-collapse:collapse;text-align:left;font-size:.9rem}
+.table caption{padding:16px;text-align:left;color:#e6c378;font-weight:600}
+.table th,.table td{padding:14px 16px;border-bottom:1px solid #34383e;vertical-align:top;min-width:110px}
+.table th{color:#f3d995;background:#15191f;position:sticky;top:0}
+.table td{color:#eee4d0}
+.table td small{display:block;margin-top:6px;color:#c1b8a6}
+.table tbody tr:nth-child(even){background:#13171d}
+.table ol{margin:0;padding-left:18px;min-width:150px}
+.table li{white-space:nowrap;margin:3px 0}
+.status{display:inline-block;border:1px solid #685635;padding:5px 9px;border-radius:6px;color:#f3d995;font-size:.85rem}
+.status[data-status="assigned"]{background:#182e26;color:#c0f0d4;border-color:#477a61}
+.status[data-status="waitlisted"]{background:#302416;color:#ffdda0}
+.preferences{margin-top:20px;border-top:1px solid #59482c;padding-top:12px}
+.preferences ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.preferences li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px;border:1px solid #443c2d;border-radius:6px;flex-wrap:wrap}
+.preferenceActions{display:flex;gap:6px}
+.preferenceActions button{border:1px solid #73603b;border-radius:4px;min-width:36px;min-height:36px;background:#171b21;color:#f3d995;padding:6px 10px;cursor:pointer}
+.preferenceActions button:disabled{opacity:.4;cursor:default}
+.preferenceActions button:focus-visible{outline:2px solid #ffe3a0;outline-offset:2px}
+.preferenceBadge{display:block;color:inherit;font-size:.7rem;margin-top:2px}
+.announcement{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.section{margin-top:32px}

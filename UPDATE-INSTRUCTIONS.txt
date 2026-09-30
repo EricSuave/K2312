@@ -1,0 +1,29 @@
+KINGDOM 2312 — AUTOMATIC PREP SCHEDULE
+
+This update includes the previous buff-only prep ranking changes.
+
+1. Extract the ZIP.
+2. Upload the app, components, data, lib and tests folders into their matching folders in your GitHub repository. Replace the existing files and keep the new files.
+3. Commit the changes and wait for Vercel to show Ready.
+4. Open Admin > KvK prep & schedule. Choose the KvK battle date and buff day.
+5. Members can change the order of their preferred times in Members > KvK Prep, then save.
+
+No SQL migration or environment-variable changes are required.
+
+Scheduling:
+- Highest estimated appointment points choose first.
+- The first selected time is preference #1; members can reorder the list.
+- If a slot is taken, try that member's next preference. Never assign an unselected time.
+- One appointment per member per day, one member per 30-minute slot.
+- Equal estimates use earlier saved submission time, then member ID.
+- All alliances compete in one schedule. Filters only change the view.
+- Day 5 only uses construction/research plans without an assigned Day 1/2 slot.
+- Missing estimates, missing preferences and full preferred slots appear in the waiting list.
+- Download full day schedule (CSV) includes assigned/open slots and unassigned members.
+- Existing forms retain the order in which times were selected. Ask members to review that order.
+
+The automatic schedule is recalculated on load/refresh from saved forms. It is a draft, not a locked booking; new or edited submissions can change assignments. Leadership confirms appointments in game. No in-game action is taken by the website.
+
+Scoring stays limited to regular Truegold and the applicable construction, research or training speedups. Gear and charms are excluded. Speedups stay in days. Training points need the optional batch details already included in the previous ranking update.
+
+Verification: production build passed; 14 relevant unit/validation tests passed; browser-emulation checks covered paginated loading, alliance-filter independence, and ordered preference submission.
