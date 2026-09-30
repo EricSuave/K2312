@@ -20,7 +20,7 @@ export const alliances: Alliance[] = ['404', '401', 'FXF', 'BLO', 'OMG', 'GLX'].
   description: ['Every rally starts with a team.', 'Preparation is a team effort.', 'A place to contribute and grow.', 'Stronger through coordination.', 'Show up. Team up. Keep growing.', 'Your place in the bigger picture.'][index],
   requirements: ['Choose an alliance whose Bear Trap schedule fits your availability.', 'Discuss your KvK participation and current recruitment requirements with leadership.'],
 }));
-export const nav = [ ['Home','/'], ['Player Profile','/members/profile'], ['Member Forms','/members'], ['KvK Battle','/members/availability'], ['KvK Prep','/members/prep'], ['Game Guides','/guides'], ['Upgrade Tools','/tools'], ['Kingdom Timeline','/timeline'], ['Transfer','/join'] ];
+export const nav = [ ['Home','/'], ['Player Profile','/members/profile'], ['Member Forms','/members'], ['KvK Battle','/members/availability'], ['KvK Prep','/members/prep'], ['Game Guides','/guides'], ['Upgrade Tools','/tools'], ['Kingdom Timeline','/timeline'], ['Transfer','/join'], ['Admin','/admin'] ];
 export const communityNav = [['About','/about'],['Events','/events'],['Gallery','/gallery'],['Join 2312','/join'],['Admin','/admin']];
 export type KingdomEvent = { id: string; title: string; kind: 'Bear Hunt' | 'KvK' | 'Alliance'; alliance: string | null; starts_at: string; ends_at: string; description: string; published: boolean };
 export type GalleryItem = { id: string; title: string; caption: string; image_url: string; taken_on: string | null; category: string; published: boolean; storage_path?: string | null };
