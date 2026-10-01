@@ -1,29 +1,26 @@
-KINGDOM 2312 — AUTOMATIC PREP SCHEDULE
+KINGDOM 2312 — ADMIN MEMBER / PREP ENTRY
 
-This update includes the previous buff-only prep ranking changes.
+This ZIP includes the previous buff-only rankings and automatic scheduling changes.
 
-1. Extract the ZIP.
-2. Upload the app, components, data, lib and tests folders into their matching folders in your GitHub repository. Replace the existing files and keep the new files.
-3. Commit the changes and wait for Vercel to show Ready.
-4. Open Admin > KvK prep & schedule. Choose the KvK battle date and buff day.
-5. Members can change the order of their preferred times in Members > KvK Prep, then save.
+INSTALL
+1. Open 004_admin_member_prep.sql from the supabase/migrations folder (also provided as a separate download).
+2. In your K2312 Supabase project, open SQL Editor > New query, paste the complete script, and click Run. Run this new script only; do not rerun migration 001.
+3. Extract the ZIP and upload the app, components, data, lib, supabase and tests folders into their matching GitHub folders. Replace changed files and include new files.
+4. Commit the update and wait for Vercel to show Ready.
+5. Open Admin > KvK prep & schedule > Add member / enter prep for a player.
 
-No SQL migration or environment-variable changes are required.
+No environment-variable or API-key changes are needed. The SQL update is safe to rerun and preserves existing accounts and submissions.
 
-Scheduling:
-- Highest estimated appointment points choose first.
-- The first selected time is preference #1; members can reorder the list.
-- If a slot is taken, try that member's next preference. Never assign an unselected time.
-- One appointment per member per day, one member per 30-minute slot.
-- Equal estimates use earlier saved submission time, then member ID.
-- All alliances compete in one schedule. Filters only change the view.
-- Day 5 only uses construction/research plans without an assigned Day 1/2 slot.
-- Missing estimates, missing preferences and full preferred slots appear in the waiting list.
-- Download full day schedule (CSV) includes assigned/open slots and unassigned members.
-- Existing forms retain the order in which times were selected. Ask members to review that order.
+USE
+Enter the player's game member ID and KvK battle date. Click Load or add player. Enter their name and alliance, preparation amounts, minister requests, and preferred times. Save prep for this player.
 
-The automatic schedule is recalculated on load/refresh from saved forms. It is a draft, not a locked booking; new or edited submissions can change assignments. Leadership confirms appointments in game. No in-game action is taken by the website.
+New player records are created when prep is saved. No player registration, email, password, or fake account is created. Entering prep does not grant the player administrator access.
 
-Scoring stays limited to regular Truegold and the applicable construction, research or training speedups. Gear and charms are excluded. Speedups stay in days. Training points need the optional batch details already included in the previous ranking update.
+For an existing player, the latest prep for that battle date loads for editing. Admin-entered preparation is stored separately and marked Admin entered. The signed-in administrator is recorded as the editor. If both the member and an admin submit prep, the latest saved entry per player ID and battle date feeds the ranking and schedule once. Existing member-submitted forms remain intact.
 
-Verification: production build passed; 14 relevant unit/validation tests passed; browser-emulation checks covered paginated loading, alliance-filter independence, and ordered preference submission.
+If another admin or the player changes the record while you are editing, saving reports a conflict. Load the player again and review the latest details before saving.
+
+Saving refreshes the ranking, chronological schedule, and admin list. Preferred time order is preserved. Only regular Truegold and the relevant speedup activities count. Existing Gen 2 / TG3 / T10 limits remain. The schedule remains an automatic draft that can change with new submissions; leadership confirms actual appointments in game.
+
+VERIFICATION
+Production build passed. Seventeen related database-access, validation, scoring and scheduling tests passed. Browser-emulation checks passed for adding an unregistered player, saving ordered preferences, refreshing, and handling an edit conflict without discarding typed information.

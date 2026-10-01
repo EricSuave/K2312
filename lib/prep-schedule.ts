@@ -4,7 +4,7 @@ import {prepEstimate,type PrepRankingInput} from './prep-ranking';
 export type PrepDay=typeof prepDays[number];
 type PreferenceFields=Partial<Record<`day_${PrepDay}_times`,string[]>&Record<`day_${1|2|4}_minister`,'yes'|'no'>>;
 export type PrepSubmission={
-  user_id:string;cycle:string;updated_at:string;
+  user_id:string;cycle:string;updated_at:string;entry_source?:'member'|'admin';entered_by?:string|null;
   payload:PrepRankingInput&PreferenceFields;
   members?:{player_id:string;player_name:string;alliance:string|null};
 };
@@ -89,8 +89,8 @@ function csvCell(value:unknown){
   return '"'+(/^[\s]*[=+@-]|^[\t\r\n]/.test(text)?"'"+text:text).replaceAll('"','""')+'"';
 }
 export function prepScheduleCsv(cycle:string,schedule:PrepDaySchedule){
-  const rows:unknown[][]=[['Battle date','Prep day','UTC slot','Status','Rank','Member','Member ID','Alliance','Estimated points','Preference used']];
-  for(const slot of schedule.slots){const m=slot.member;rows.push([cycle,schedule.day,prepSlotLabel(slot.start),m?'Assigned':'Open',m?.rank,m?.submission.members?.player_name,m?.submission.members?.player_id,m?.submission.members?.alliance,m?.points,m?.preference_number]);}
-  for(const m of schedule.members.filter(m=>m.status!=='assigned'))rows.push([cycle,schedule.day,'',scheduleStatusLabels[m.status],m.rank,m.submission.members?.player_name,m.submission.members?.player_id,m.submission.members?.alliance,m.points,'']);
+  const rows:unknown[][]=[['Battle date','Prep day','UTC slot','Status','Rank','Member','Member ID','Alliance','Estimated points','Preference used','Entry source']];
+  for(const slot of schedule.slots){const m=slot.member;rows.push([cycle,schedule.day,prepSlotLabel(slot.start),m?'Assigned':'Open',m?.rank,m?.submission.members?.player_name,m?.submission.members?.player_id,m?.submission.members?.alliance,m?.points,m?.preference_number,m?(m.submission.entry_source==='admin'?'Admin entered':'Member submitted'):'']);}
+  for(const m of schedule.members.filter(m=>m.status!=='assigned'))rows.push([cycle,schedule.day,'',scheduleStatusLabels[m.status],m.rank,m.submission.members?.player_name,m.submission.members?.player_id,m.submission.members?.alliance,m.points,'',m.submission.entry_source==='admin'?'Admin entered':'Member submitted']);
   return '\uFEFF'+rows.map(row=>row.map(csvCell).join(',')).join('\r\n');
 }

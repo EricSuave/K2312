@@ -3,6 +3,7 @@ import {z} from 'zod';
 import {adminClient} from '@/lib/supabase/server';
 import {sameOrigin,readJson,failure,HttpError} from '@/lib/http';
 import {eventSchema,gallerySchema,reviewSchema} from '@/lib/validation';
+import {prepStorageError} from '@/lib/prep-storage-error';
 import {rateLimit} from '@/lib/supabase/service';
 
 const resources=['transfers','forms','events','gallery'] as const;
@@ -14,6 +15,12 @@ export async function GET(request:Request,{params}:{params:Promise<{resource:str
   try{
     const{client}=await adminClient();const resource=resourceName((await params).resource);const url=new URL(request.url);
     const offset=z.coerce.number().int().min(0).max(100000).parse(url.searchParams.get('offset')??0);
+    if(resource==='forms'&&url.searchParams.get('kind')==='prep'){
+      const{data,error}=await client.from('admin_prep_entries').select('*').order('updated_at',{ascending:false}).order('player_id',{ascending:true}).order('cycle',{ascending:true}).range(offset,offset+100);
+      if(error)throw prepStorageError(error);
+      const items=(data??[]).slice(0,100).map(row=>({...row,members:{player_id:row.player_id,player_name:row.player_name,alliance:row.alliance}}));
+      return NextResponse.json({items,has_more:(data?.length??0)>100},{headers:privateHeaders});
+    }
     let query=client.from(tables[resource]).select('*').order(resource==='forms'?'updated_at':'created_at',{ascending:false});
     if(resource==='forms'){const kind=z.enum(['profile','availability','prep']).parse(url.searchParams.get('kind'));query=query.eq('kind',kind).order('user_id',{ascending:true}).order('cycle',{ascending:true});}
     const{data,error}=await query.range(offset,offset+100);if(error)throw error;

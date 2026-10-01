@@ -6,14 +6,14 @@ import styles from './prep-schedule.module.css';
 
 const labels:Record<PrepDay,string>={1:'Day 1 · Construction buff',2:'Day 2 · Research buff',4:'Day 4 · Training buff',5:'Day 5 · Construction / research overflow'};
 const pointsLabel=(member:ScheduledMember)=>member.points===null?'Needs estimate':member.points.toLocaleString('en-US');
-function MemberName({member}:{member:ScheduledMember}){return <>{member.submission.members?.player_name??'Member'}<small>ID {member.submission.members?.player_id??member.submission.user_id}</small></>;}
+function MemberName({member}:{member:ScheduledMember}){return <>{member.submission.members?.player_name??'Member'}<small>ID {member.submission.members?.player_id??member.submission.user_id}</small>{member.submission.entry_source==='admin'&&<small>Admin entered</small>}</>;}
 function Spending({member,day}:{member:ScheduledMember;day:PrepDay}){
  const p=member.submission.payload;
  if(day===4)return <>{p.training_speedup_days??'—'} training days</>;
  return <>{member.construction_included&&<>{p.truegold?.toLocaleString('en-US')??'—'} Truegold<small>{p.construction_speedup_days??'—'} construction days</small></>}{member.research_included&&<small>{p.research_speedup_days??'—'} research days</small>}{!member.construction_included&&!member.research_included&&'Already allocated'}</>;
 }
 
-export function PrepRankings(){
+export function PrepRankings({refreshKey=0}:{refreshKey?:number}){
  const[rows,setRows]=useState<PrepSubmission[]>([]),[loading,setLoading]=useState(true),[error,setError]=useState(''),[reload,setReload]=useState(0);
  const[cycle,setCycle]=useState(''),[alliance,setAlliance]=useState(''),[day,setDay]=useState<PrepDay>(1),[requested,setRequested]=useState(true),[slot,setSlot]=useState('');
  const[loadedAt,setLoadedAt]=useState('');
@@ -35,7 +35,7 @@ export function PrepRankings(){
    setCycle(previous=>dates.includes(previous)?previous:dates[0]??'');setLoadedAt(new Date().toISOString());
   })().catch(e=>{if(!controller.signal.aborted)setError(e.message);}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});
   return()=>controller.abort();
- },[reload]);
+ },[reload,refreshKey]);
  const dates=[...new Set(rows.map(r=>r.cycle))].sort().reverse();
  const schedules=useMemo(()=>createPrepSchedule(rows,cycle),[rows,cycle]);
  const schedule=schedules[day];

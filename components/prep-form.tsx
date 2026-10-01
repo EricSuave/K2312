@@ -1,5 +1,5 @@
 'use client';
-import {useState,type FormEvent} from 'react';
+import {useState,type FormEvent,type ReactNode} from 'react';
 import {DraftNotice,FormBack,MemberIdentity,FormLoadState} from './member-form-fields';
 import {TimeSlots} from './prep-time-preferences';
 import {prepFormSchema,type PrepFormValues} from '@/lib/member-validation';
@@ -12,7 +12,8 @@ export function PrepForm(){
   if(saved.loading||saved.loadFailed)return <FormLoadState loading={saved.loading} message={saved.status} retry={saved.retry}/>;
   return <PrepEditor key={saved.revision} saved={saved}/>;
 }
-function PrepEditor({saved}:{saved:ReturnType<typeof useMemberForm<PrepFormValues>>}){
+export type PrepEditorState=Pick<ReturnType<typeof useMemberForm<PrepFormValues>>,'initial'|'save'|'busy'|'status'|'error'|'setStatus'|'setError'|'canSave'>;
+export function PrepEditor({saved,adminIdentity,fixedDate}:{saved:PrepEditorState;adminIdentity?:ReactNode;fixedDate?:string}){
   const initial=saved.initial;
   const[trainingEstimate,setTrainingEstimate]=useState(!!initial?.training_batch);
   async function submit(event:FormEvent<HTMLFormElement>){
@@ -25,9 +26,9 @@ function PrepEditor({saved}:{saved:ReturnType<typeof useMemberForm<PrepFormValue
     if(!result.success){saved.setError(true);saved.setStatus(result.error.issues[0].message);return;}
     await saved.save(result.data);
   }
-  return <div className="wrap prep-page"><FormBack/><form className="prep-form" onSubmit={submit}>
-    <header className="prep-heading"><p className="eyebrow">MINISTER’S HALL</p><h1>BACKPACK AMOUNTS & MINISTER POSITION BOOKINGS</h1><p>Kingdom 2312 · KvK preparation</p></header>
-    <DraftNotice/><div className="prep-identity"><MemberIdentity/><label>KvK battle date (UTC)<input type="date" name="battle_date" required defaultValue={initial?.battle_date??''}/><span className="field-help">Choose the battle date that follows this preparation phase.</span></label></div>
+  return <div className={adminIdentity?'prep-page':'wrap prep-page'}>{!adminIdentity&&<FormBack/>}<form className="prep-form" onSubmit={submit}>
+    <header className="prep-heading"><p className="eyebrow">MINISTER’S HALL</p>{adminIdentity?<h2>ENTER MEMBER PREPARATION</h2>:<h1>BACKPACK AMOUNTS & MINISTER POSITION BOOKINGS</h1>}<p>Kingdom 2312 · KvK preparation</p></header>
+    {!adminIdentity&&<DraftNotice/>}<div className="prep-identity">{adminIdentity??<MemberIdentity/>}<label>KvK battle date (UTC)<input type="date" name="battle_date" required readOnly={!!fixedDate} defaultValue={fixedDate??initial?.battle_date??''}/><span className="field-help">{fixedDate?'Use the lookup above to change the player or battle date.':'Choose the battle date that follows this preparation phase.'}</span></label></div>
     <p className="prep-instructions">Enter speedups in days, including any general speedups allocated to that activity. Count each general speedup only once. Leadership ranks each buff day using its planned speedups and, for construction, regular Truegold. Gear and charms do not count toward appointment rankings. Select times in preference order. The highest estimated point producer is scheduled first, followed by the next member using their first remaining preferred time. Leadership will confirm appointments.</p>
     <div className="prep-columns">
       <section className="prep-day"><span className="prep-day-badge">DAY 1</span><h2>CHIEF MINISTER — CONSTRUCTION</h2><YesNo name="day_1_minister" label="Do you want the construction Chief Minister buff?" value={initial?.day_1_minister}/><fieldset className="prep-upgrades"><legend>Construction Upgrades</legend><div>{(['TG1','TG2','TG3'] as const).map(target=><label key={target}><input type="checkbox" name="construction_targets" value={target} defaultChecked={initial?.construction_targets.includes(target)}/>{target}</label>)}</div></fieldset><label>How much Truegold will you use?<input name="truegold" type="number" min="0" max="1000000000000" step="1" required defaultValue={initial?.truegold??''} placeholder="0"/></label><DaysInput name="construction_speedup_days" value={initial?.construction_speedup_days}/><TimeSlots day={1} title="Construction" initial={initial?.day_1_times}/></section>
@@ -37,6 +38,6 @@ function PrepEditor({saved}:{saved:ReturnType<typeof useMemberForm<PrepFormValue
       <TimeSlots day={4} title="Troop Training" initial={initial?.day_4_times}/></section>
       <section className="prep-day"><span className="prep-day-badge overflow">DAY 5</span><h2>OVERFLOW — CONSTRUCTION & RESEARCH SECOND CHANCE</h2><p className="prep-overflow-copy">If you are not scheduled on Day 1 or Day 2, leadership may offer you a Day 5 appointment. Choose backup times in preference order. The schedule uses construction or research plans that did not receive a Day 1 or Day 2 appointment.</p><TimeSlots day={5} title="Overflow" initial={initial?.day_5_times}/></section>
     </div>
-    <div className="prep-bottom"><p>Times are UTC on the selected prep day. A 23:45 slot continues into the next UTC day. Your selected order is your scheduling preference. New or updated submissions can change the automatic schedule until leadership confirms it.</p><button type="submit" className="button" disabled={saved.busy}>{saved.busy?'Saving…':saved.canSave?'Save KvK preparation':'Check entries'}</button>{saved.status&&<p role={saved.error?'alert':'status'} className={`form-message ${saved.error?'error':''}`}>{saved.status}</p>}</div>
+    <div className="prep-bottom"><p>Times are UTC on the selected prep day. A 23:45 slot continues into the next UTC day. Your selected order is your scheduling preference. New or updated submissions can change the automatic schedule until leadership confirms it.</p><button type="submit" className="button" disabled={saved.busy}>{saved.busy?'Saving…':saved.canSave?(adminIdentity?'Save prep for this player':'Save KvK preparation'):'Check entries'}</button>{saved.status&&<p role={saved.error?'alert':'status'} className={`form-message ${saved.error?'error':''}`}>{saved.status}</p>}</div>
   </form></div>;
 }
